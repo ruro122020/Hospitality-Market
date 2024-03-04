@@ -7,15 +7,10 @@ from flask import request
 from flask_restful import Resource
 
 # Local imports
-from config import app, db, api
+from config import app
 # Add your model imports
-# from routes.routes import *
-# from models.models import *
-# Views go here!
-
-# @app.route('/')
-# def index():
-#     return '<h1>Project Server</h1>'
+from routes.routes import *
+from models import *
 
 
 if __name__ == '__main__':
