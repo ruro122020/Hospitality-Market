@@ -9,8 +9,8 @@ from flask_restful import Resource
 # Local imports
 from config import app, db, api
 # Add your model imports
-from routes.routes import *
-from models.models import *
+# from routes.routes import *
+# from models.models import *
 # Views go here!
 
 # @app.route('/')
