@@ -8,10 +8,23 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import db
+from models.models import User
 
 if __name__ == '__main__':
     fake = Faker()
     with app.app_context():
         print("Starting seed...")
         # Seed code goes here!
+        print('Deleting all records...')
+        User.query.delete()
+
+        print('Creating users...')
+
+        users = []
+        usernames = []
+
+        for i in range(20):
+          username = fake.first_name()
+          usernames.append(username)
+
+        print(usernames)

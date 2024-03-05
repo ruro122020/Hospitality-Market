@@ -10,7 +10,7 @@ from flask_restful import Resource
 from config import app
 # Add your model imports
 from routes.routes import *
-from models import *
+from models.models import *
 
 
 if __name__ == '__main__':
