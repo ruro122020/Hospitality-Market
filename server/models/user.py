@@ -9,6 +9,8 @@ from config import db, bcrypt
 class User(db.Model, SerializerMixin):
   __tablename__ = 'users'
 
+  __table_args__ = (db.CheckConstraint('length(name) > 3'),)
+
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String, nullable=False)
   username = db.Column(db.String, nullable=False, unique=True)
