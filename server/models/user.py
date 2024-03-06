@@ -23,6 +23,7 @@ class User(db.Model, SerializerMixin):
       return name
     else:
       raise TypeError('Name must be of type string and more than 3 characters')
+  
 
   @hybrid_property
   def password_hash(self):
@@ -39,15 +40,3 @@ class User(db.Model, SerializerMixin):
     return bcrypt.check_password_hash(
       self._password_hash, password.encode('utf-8'))
   
-
-user = User(
-  name='res3',
-  username='ford',
-  image_url=''
-)
-
-user.password_hash = 'pass'
-
-print(user.name)
-print(user.username)
-# print(user._password_hash)

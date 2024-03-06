@@ -9,6 +9,7 @@ from faker import Faker
 # Local imports
 from app import app
 from models.models import User
+from config import db
 
 if __name__ == '__main__':
     fake = Faker()
@@ -21,10 +22,19 @@ if __name__ == '__main__':
         print('Creating users...')
 
         users = []
-        usernames = []
 
         for i in range(20):
-          username = fake.first_name()
-          usernames.append(username)
 
-        print(usernames)
+          user = User(
+             name=fake.name(),
+             username=fake.first_name(),
+             image_url=fake.url())
+          
+          user.password_hash = user.username + 'password'
+
+          users.append(user)
+        
+        db.session.add_all(users)
+        db.session.commit()
+
+        print('Complete.')
