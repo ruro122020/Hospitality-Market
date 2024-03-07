@@ -9,11 +9,12 @@ from config import db, bcrypt
 class User(db.Model, SerializerMixin):
   __tablename__ = 'users'
 
-  __table_args__ = (db.CheckConstraint('length(name) > 3'),)
+  __table_args__ = (db.CheckConstraint('length(name) > 3', name='ck_user_name_length'),)
 
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String, nullable=False)
   username = db.Column(db.String, nullable=False, unique=True)
+  email = db.Column(db.String, nullable=False, unique=True)
   image_url = db.Column(db.String)
   _password_hash = db.Column(db.String, nullable=False)
 
@@ -23,7 +24,13 @@ class User(db.Model, SerializerMixin):
       return name
     else:
       raise TypeError('Name must be of type string and more than 3 characters')
-  
+    
+  @validates('email')
+  def validate_email(self, key, email):
+    if '@' not in email:
+      raise TypeError('Must be an email address')
+    else:
+      return email
 
   @hybrid_property
   def password_hash(self):
