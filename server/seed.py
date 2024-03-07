@@ -22,12 +22,19 @@ if __name__ == '__main__':
         print('Creating users...')
 
         users = []
-
+        usernames = []
         for i in range(20):
-
+          username = fake.first_name()
+          email = f'{fake.last_name()}@{fake.domain_name()}'
+          #this while is to check if a username already exist
+          while username in usernames:
+             username = fake.first_name()
+          usernames.append(username)
+          
           user = User(
              name=fake.name(),
-             username=fake.first_name(),
+             username=username,
+             email=email,
              image_url=fake.url())
           
           user.password_hash = user.username + 'password'

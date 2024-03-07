@@ -28,7 +28,7 @@ class User(db.Model, SerializerMixin):
   @validates('email')
   def validate_email(self, key, email):
     if '@' not in email:
-      raise TypeError('Must be an email address')
+      raise TypeError('Email must be an email address')
     else:
       return email
 
