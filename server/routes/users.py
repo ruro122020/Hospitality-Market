@@ -5,12 +5,7 @@ from models.models import User
 from sqlalchemy.exc import IntegrityError
 
 class Signup(Resource):
-  #Testing purposes###############
-  def get(self):
-    user = User.query.first()
-    return user.to_dict(), 200
 
-  ################################
   def post(self):
     json = request.get_json()
     
