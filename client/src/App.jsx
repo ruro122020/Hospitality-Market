@@ -1,10 +1,19 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    fetch('/api/signup')
+      .then(res => {
+        if (res.ok) {
+          res.json().then(user => console.log('user', user))
+        }
+      })
+  }, [])
 
   return (
     <>
