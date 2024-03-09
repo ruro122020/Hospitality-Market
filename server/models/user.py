@@ -23,14 +23,21 @@ class User(db.Model, SerializerMixin):
     if type(name) == str and len(name) > 3:
       return name
     else:
-      raise TypeError('Name must be of type string and more than 3 characters')
+      raise ValueError('Name must be of type string and more than 3 characters')
     
   @validates('email')
   def validate_email(self, key, email):
     if '@' not in email:
-      raise TypeError('Email must be an email address')
+      raise ValueError('Email must be an email address')
     else:
       return email
+    
+  @validates('_password_hash')
+  def validate_password(self, key, _password_hash):
+    if len(_password_hash) > 8:
+      return _password_hash
+    else:
+      raise ValueError('password must be more than 8 characters long')
 
   @hybrid_property
   def password_hash(self):

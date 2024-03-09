@@ -23,7 +23,7 @@ if __name__ == '__main__':
 
         users = []
         usernames = []
-        for i in range(20):
+        for i in range(5):
           username = fake.first_name()
           email = f'{fake.last_name()}@{fake.domain_name()}'
           #this while is to check if a username already exist
