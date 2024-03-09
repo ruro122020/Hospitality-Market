@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useFormik } from 'formik';
 import * as yup from 'yup'
+import Navbar from '../components/Navbar';
 
 const SignupForm = () => {
   const [error, setError] = useState(false)
