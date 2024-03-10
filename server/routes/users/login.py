@@ -13,6 +13,8 @@ class Login(Resource):
       if user.authenticate(json.get('password')):
         session['user_id'] = user.id
         return user.to_dict(), 200
+      else:
+        return {'error':'Invalid Username or Password'}, 401
 
 
 
