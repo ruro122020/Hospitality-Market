@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useFormik } from 'formik';
 import * as yup from 'yup'
-import Navbar from '../components/Navbar';
 
 const SignupForm = () => {
   const [error, setError] = useState(false)
@@ -22,8 +21,6 @@ const SignupForm = () => {
     },
     validationSchema: formSchema,
     onSubmit: (values) => {
-      console.log('values', values)
-      //make post to api/signup
       fetch('/api/signup', {
         method: 'POST',
         mode: 'cors',
@@ -37,6 +34,7 @@ const SignupForm = () => {
           if (user.error === 'Unproccessable Entity') {
             setError(true)
           }
+          console.log('user', user)
         })
         .catch(error => console.log('error', error))
     }

@@ -1,6 +1,7 @@
 import SignupForm from "./pages/SignupForm";
 import Home from "./pages/Home";
-import Layout from "./pages/Layout";
+import Layout from "./components/Layout";
+import Services from './pages/Services'
 
 const routes = [
   {
@@ -14,6 +15,10 @@ const routes = [
       {
         path: '/signup',
         element: <SignupForm />
+      },
+      {
+        path: '/services',
+        element: <Services />
       }
     ]
   }
