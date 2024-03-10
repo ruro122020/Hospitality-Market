@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../components/contexts/AuthContext'
 
 const Login = () => {
   const [error, setError] = useState(false)
+  const { login } = useAuth()
   let navigate = useNavigate()
 
   const formSchema = yup.object().shape({
@@ -30,6 +32,7 @@ const Login = () => {
           if (user.code === 401) {
             setError(true)
           } else {
+            login()
             navigate('/services')
           }
           console.log('login user', user)
@@ -70,7 +73,7 @@ const Login = () => {
             <div>{formik.errors.password}</div>
           )}
         </div>
-        <button type='submit' >Login</button>
+        <button type='submit'>Login</button>
       </form>
 
     </>
