@@ -31,9 +31,7 @@ const SignupForm = () => {
       })
         .then(res => res.json())
         .then(user => {
-          if (user.error === 'Unproccessable Entity') {
-            setError(true)
-          }
+          //NOTE: HANDLE ERROR IF USER RETURNS ERROR MESSAGE
           console.log('user', user)
         })
         .catch(error => console.log('error', error))
