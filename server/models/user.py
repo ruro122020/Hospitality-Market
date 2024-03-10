@@ -5,7 +5,6 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import validates
 from config import db, bcrypt
 
-######### IMPORTANT: Use marshmellow to serialize user object to not include password when sending the user's object
 class User(db.Model, SerializerMixin):
   __tablename__ = 'users'
 
