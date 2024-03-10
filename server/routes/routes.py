@@ -1,1 +1,1 @@
-from .users import login, signup
+from .users import login, signup, logout

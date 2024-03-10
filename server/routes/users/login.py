@@ -2,7 +2,6 @@ from flask import request, session
 from flask_restful import Resource
 from config import app, db, api
 from models.models import User
-from sqlalchemy.exc import IntegrityError
 
 
 class Login(Resource):
