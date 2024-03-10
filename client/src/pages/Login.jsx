@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const [error, setError] = useState(false)
+  let navigate = useNavigate()
+
   const formSchema = yup.object().shape({
     username: yup.string().required('Must enter username'),
     password: yup.string().required('Must enter password')
@@ -15,7 +18,6 @@ const Login = () => {
     },
     validationSchema: formSchema,
     onSubmit: (values) => {
-      //make post to /api/login
       fetch('/api/login', {
         method: 'POST',
         headers: {
@@ -25,8 +27,10 @@ const Login = () => {
       })
         .then(res => res.json())
         .then(user => {
-          if (user.error === 'Unproccessable Entity') {
+          if (user.code === 401) {
             setError(true)
+          } else {
+            navigate('/services')
           }
           console.log('login user', user)
         })
@@ -66,7 +70,7 @@ const Login = () => {
             <div>{formik.errors.password}</div>
           )}
         </div>
-        <button type='submit'>Login</button>
+        <button type='submit' >Login</button>
       </form>
 
     </>

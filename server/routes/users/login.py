@@ -14,7 +14,7 @@ class Login(Resource):
         session['user_id'] = user.id
         return user.to_dict(), 200
       else:
-        return {'error':'Invalid Username or Password'}, 401
+        return {'error':'Invalid Username or Password', 'code': 401}, 401
 
 
 
