@@ -1,7 +1,6 @@
 from flask import request, session
 from flask_restful import Resource
 from config import app, db, api
-from models.models import User
 
 class Logout(Resource):
   def delete(self):
