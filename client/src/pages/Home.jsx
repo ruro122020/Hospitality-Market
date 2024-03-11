@@ -1,20 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { useAuth } from '../components/contexts/AuthContext'
+
 const Home = () => {
-  const [user, setUser] = useState(null)
-  const { login } = useAuth
-  useEffect(() => {
-    fetch('/api/checksession')
-      .then(res => {
-        if (res.ok) {
-          res.json().then(user => {
-            setUser(user)
-            console.log('check session user', user)
-          })
-        }
-      })
-  }, [])
+
 
   return (
     <div>

@@ -2,9 +2,13 @@ import React, { useState } from 'react'
 import { useFormik } from 'formik';
 import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../components/contexts/AuthContext';
+
 const SignupForm = () => {
   const [error, setError] = useState(false)
   let navigate = useNavigate()
+  const { login } = useAuth()
+
   const formSchema = yup.object().shape({
     name: yup.string().required("Must enter a name").min(3),
     username: yup.string().required('Must enter username'),
@@ -35,6 +39,7 @@ const SignupForm = () => {
           if (user.error === 'Unproccessable Entity') {
             setError(true)
           } else {
+            login()
             navigate('/services')
           }
           console.log('user', user)

@@ -9,17 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const login = () => setIsLoggedIn(true)
-  const logout = () => {
-    fetch('/api/logout', {
-      method: 'DELETE'
-    })
-      .then((res) => {
-        if (res.ok) {
-          setIsLoggedIn(false)
-        }
-      })
-      .catch(error => console.log('error', error))
-  }
+  const logout = () => setIsLoggedIn(false)
 
   return (
     <div>

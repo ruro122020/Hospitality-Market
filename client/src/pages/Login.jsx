@@ -3,7 +3,7 @@ import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../components/contexts/AuthContext'
-
+import { apiLogin } from '../api'
 const Login = () => {
   const [error, setError] = useState(false)
   const { login } = useAuth()
@@ -19,25 +19,13 @@ const Login = () => {
       password: ''
     },
     validationSchema: formSchema,
-    onSubmit: (values) => {
-      fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(values)
-      })
-        .then(res => res.json())
-        .then(user => {
-          if (user.code === 401) {
-            setError(true)
-          } else {
-            login()
-            navigate('/services')
-          }
-          console.log('login user', user)
-        })
-        .catch(error => console.log('error', error))
+    onSubmit: async (values) => {
+      const success = await apiLogin(values)
+      console.log('success in login', success)
+      if (success) {
+        login()
+        navigate('/services')
+      }
     }
   })
 
