@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useFormik } from 'formik';
 import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../components/contexts/AuthContext';
+import { useAuth } from './contexts/AuthContext';
 
 const SignupForm = () => {
   const [error, setError] = useState(false)

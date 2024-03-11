@@ -32,4 +32,18 @@ const apiLogin = async (values) => {
   }
 }
 
-export { apiLogout, apiLogin }
+const apiCheckSession = async () => {
+  try {
+    const res = await fetch('/api/check_session')
+    if (!res.ok) {
+      throw new Error('user not logged in')
+    }
+    return true
+  } catch (error) {
+    console.log('error in checksession route', error)
+    return false
+  }
+
+
+}
+export { apiLogout, apiLogin, apiCheckSession }

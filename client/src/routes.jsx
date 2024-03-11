@@ -1,4 +1,4 @@
-import SignupForm from "./pages/SignupForm";
+import SignupForm from "./components/SignupForm";
 import Login from './pages/Login'
 import Home from "./pages/Home";
 import Layout from "./components/Layout";

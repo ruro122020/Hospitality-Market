@@ -1,8 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import { Outlet } from 'react-router-dom'
+import { apiCheckSession } from '../api'
+import { useAuth } from './contexts/AuthContext'
 
 const Layout = () => {
+  const { login, isLoggedIn, logout } = useAuth()
+
+  useEffect(() => {
+    const checkSession = async () => {
+      const userLogged = await apiCheckSession()
+      if (userLogged) {
+        login()
+      } else {
+        logout()
+      }
+    }
+    checkSession()
+  }, [])
+
+  if (isLoggedIn === null) return <p>loading ...</p>
 
   return (
     <div>
