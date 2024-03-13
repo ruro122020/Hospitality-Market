@@ -4,6 +4,8 @@ import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../components/contexts/AuthContext'
 import { apiLogin } from '../api'
+import { NavLink } from 'react-router-dom'
+
 const LoginForm = () => {
 
   const [error, setError] = useState(false)
@@ -62,7 +64,10 @@ const LoginForm = () => {
         </div>
         <button type='submit'>Login</button>
       </form>
-
+      <p>
+        Don't have an account? &nbsp;
+        <NavLink to='/signup' onClick={() => setShowLogin(false)}> Sign Up</NavLink>
+      </p>
     </>
   )
 }

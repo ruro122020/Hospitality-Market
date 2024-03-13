@@ -1,8 +1,8 @@
-import SignupForm from "./components/SignupForm";
-import Login from './pages/Login'
+import SignupForm from "./pages/SignupForm";
 import Home from "./pages/Home";
 import Layout from "./components/Layout";
 import Services from './pages/Services'
+import LoginForm from "./pages/LoginForm";
 
 const routes = [
   {
@@ -23,7 +23,7 @@ const routes = [
       },
       {
         path: '/login',
-        element: <Login />
+        element: <LoginForm />
       }
 
     ]

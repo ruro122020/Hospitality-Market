@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { useFormik } from 'formik';
 import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from './contexts/AuthContext';
+import { useAuth } from '../components/contexts/AuthContext';
+import { NavLink } from 'react-router-dom';
 
 const SignupForm = () => {
   const [error, setError] = useState(false)
@@ -119,6 +120,10 @@ const SignupForm = () => {
         </div>
         <button type='submit'>Submit</button>
       </form>
+      <p>
+        Already have an account? &nbsp;
+        <NavLink to='/login' onClick={() => setShowLogin(true)}>Log In</NavLink>
+      </p>
     </>
   )
 }

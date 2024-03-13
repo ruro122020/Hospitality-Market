@@ -44,4 +44,18 @@ const apiCheckSession = async () => {
 
 
 }
-export { apiLogout, apiLogin, apiCheckSession }
+
+const apiServices = async () => {
+  try {
+    const res = await fetch('/api/services')
+    if (!res.ok) {
+      throw new Error('Fetch to services endpoint failed')
+    }
+    const services = await res.json()
+    return services
+  } catch (err) {
+    console.log('err', err)
+    return false
+  }
+}
+export { apiLogout, apiLogin, apiCheckSession, apiServices }

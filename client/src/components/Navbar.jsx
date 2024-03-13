@@ -19,6 +19,7 @@ const Navbar = () => {
     <nav>
       <NavLink to='/'>Home</NavLink>
       <NavLink to='/services'>Services</NavLink>
+      <NavLink to='/signup'>Signup</NavLink>
       {
         isLoggedIn ? (
           <NavLink to='/' onClick={handleLogout}>Logout</NavLink>
