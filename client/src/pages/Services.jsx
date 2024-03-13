@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { apiServices } from '../api'
 import ServiceCard from '../components/ServiceCard'
+import { Grid } from '@mui/material'
 
 const Services = () => {
   const [services, setServices] = useState(null)
@@ -18,9 +19,13 @@ const Services = () => {
   if (!services) return <p>Server Not Responding</p>
 
   return (
-    <div>
-      {services.map(service => <ServiceCard key={service.id} service={service} />)}
-    </div>
+    <Grid container >
+      {services.map(service => (
+        <Grid xs={3}>
+          <ServiceCard key={service.id} service={service} />
+        </Grid>
+      ))}
+    </Grid>
   )
 }
 

@@ -6,10 +6,9 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 const ServiceCard = ({ service }) => {
-  console.log('service', service)
   const { title, description, location, price, user, category } = service
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, }}>
       <CardMedia
         sx={{ height: 140 }}
         image={user.image_url}
@@ -28,7 +27,6 @@ const ServiceCard = ({ service }) => {
         <Typography variant="body2" color="text.secondary">
           {description}
         </Typography>
-
         <Typography variant="body2" color="text.secondary">
           {category}
         </Typography>
