@@ -52,7 +52,7 @@ if __name__ == '__main__':
         for user in users:
           service = Service(
             title=fake.company(),
-            description=fake.sentence(),
+            description=fake.paragraph(),
             price=random.choice(prices),
             location=fake.address(),
             category=random.choice(category),
