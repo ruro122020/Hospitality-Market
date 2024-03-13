@@ -16,7 +16,6 @@ export const AuthProvider = ({ children }) => {
       <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
         {children}
       </AuthContext.Provider>
-
     </div>
   )
 }

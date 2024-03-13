@@ -8,6 +8,8 @@ from config import db, bcrypt
 class User(db.Model, SerializerMixin):
   __tablename__ = 'users'
 
+  serialize_rules = ('-services.user', '-_password_hash')
+
   __table_args__ = (db.CheckConstraint('length(name) > 3', name='ck_user_name_length'),)
 
   id = db.Column(db.Integer, primary_key=True)
@@ -16,6 +18,9 @@ class User(db.Model, SerializerMixin):
   email = db.Column(db.String, nullable=False, unique=True)
   image_url = db.Column(db.String)
   _password_hash = db.Column(db.String, nullable=False)
+
+  #relationships
+  services = db.relationship('Service', back_populates='user')
 
   @validates('name')
   def validate_name(self, key, name):

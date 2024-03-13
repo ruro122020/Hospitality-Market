@@ -21,7 +21,7 @@ class Signup(Resource):
       db.session.add(user)
       db.session.commit()
       session['user_id'] = user.id
-      return user.to_dict(rules=('-_password_hash',)), 201
+      return user.to_dict(), 201
     except IntegrityError:
        return {'error': 'Unproccessable Entity'}, 422
     
