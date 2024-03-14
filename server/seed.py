@@ -8,7 +8,7 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models.models import User, Service
+from models.models import User, Service, Booking
 from config import db
 
 if __name__ == '__main__':
@@ -61,6 +61,22 @@ if __name__ == '__main__':
           services.append(service)
 
         db.session.add_all(services)
+        db.session.commit()
+
+        print('Creating Bookings...')
+
+        bookings = []
+
+        for i in range(10):
+          booking = Booking(
+             date=fake.date(),
+             time=fake.time(),
+             provider=random.choice(users),
+             consumer=random.choice(users),
+             service=random.choice(services)
+          )
+          bookings.append(booking)
+        db.session.add_all(bookings)
         db.session.commit()
 
         print('Complete.')

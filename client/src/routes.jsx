@@ -25,9 +25,9 @@ const routes = [
         path: '/login',
         element: <LoginForm />
       }
-
     ]
   }
+
 ]
 
 export default routes

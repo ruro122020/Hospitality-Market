@@ -2,9 +2,7 @@
 const apiLogout = async () => {
   try {
     const res = await fetch('/api/logout', { method: 'DELETE' })
-    if (!res.ok) {
-      throw new Error('logout request failed')
-    }
+    const data = await res.json()
     return true
   } catch (error) {
     console.error('Error logging out: ', error)

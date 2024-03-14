@@ -20,7 +20,9 @@ class User(db.Model, SerializerMixin):
   _password_hash = db.Column(db.String, nullable=False)
 
   #relationships
-  services = db.relationship('Service', back_populates='user')
+  services = db.relationship('Service', back_populates='user', cascade='all, delete-orphan')
+  provider_bookings = db.relationship('Booking', foreign_keys='Booking.provider_id', back_populates='provider', cascade='all, delete-orphan')
+  consumer_bookings = db.relationship('Booking', foreign_keys='Booking.consumer_id', back_populates='consumer', cascade='all, delete-orphan')
 
   @validates('name')
   def validate_name(self, key, name):

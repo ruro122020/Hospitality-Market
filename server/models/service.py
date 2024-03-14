@@ -18,6 +18,6 @@ class Service(db.Model, SerializerMixin):
 
   #relationship
   user = db.relationship('User', back_populates='services')
-  
+  bookings = db.relationship('Booking', back_populates='service', cascade='all, delete-orphan')
 
 
