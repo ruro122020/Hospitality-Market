@@ -6,7 +6,7 @@ from config import db
 class Service(db.Model, SerializerMixin):
   __tablename__ = 'services'
 
-  serialize_rules=('-user.services',)
+  serialize_rules=('-user.services', '-bookings.service')
 
   id = db.Column(db.Integer, primary_key=True)
   title = db.Column(db.String, nullable=False)
