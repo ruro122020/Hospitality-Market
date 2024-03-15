@@ -36,7 +36,22 @@ const pages = [
     page: 'Login'
   }
 ]
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
+const settings = [
+  {
+    route: '/profile',
+    page: 'Profile',
+  },
+  {
+    route: '/account',
+    page: 'Account'
+  },
+  {
+    route: '/dashboard',
+    page: 'Dashboard'
+  }
+]
 
 const Navbar = () => {
   //useAuth is from AuthContext.jsx file
@@ -131,7 +146,6 @@ const Navbar = () => {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -148,7 +162,7 @@ const Navbar = () => {
               textDecoration: 'none',
             }}
           >
-            Services here
+            Services
           </Typography>
           {/*This section is the desktop size */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -188,16 +202,23 @@ const Navbar = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                {settings.map(({ route, page }) => (
+                  <MenuItem key={page} onClick={handleCloseUserMenu}>
                     <Typography
                       textAlign="center"
                       as={NavLink}
-                      to='/'
-                      onClick={handleLogout}
-                    >{setting}</Typography>
+                      to={route}
+                    >{page}</Typography>
                   </MenuItem>
                 ))}
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography
+                    textAlign="center"
+                    as={NavLink}
+                    to='/'
+                    onClick={handleLogout}
+                  >Logout</Typography>
+                </MenuItem>
               </Menu>
             </Box>
           }
