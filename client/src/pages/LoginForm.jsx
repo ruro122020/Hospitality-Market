@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../components/contexts/AuthContext'
 import { apiLogin } from '../api'
 import { NavLink } from 'react-router-dom'
+import { Grid, TextField, FormControl, Button } from '@mui/material'
 
 const LoginForm = () => {
 
@@ -32,43 +33,47 @@ const LoginForm = () => {
   })
 
   return (
-    <>
+    <Grid container sx={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
       <h1>Login</h1>
-      <form onSubmit={formik.handleSubmit}>
+      <FormControl onSubmit={formik.handleSubmit}>
         {error && <div>Invalid Username or Password</div>}
         <div>
-          <label htmlFor='username'>Username</label>
-          <input
+          <TextField
             id='username'
             name='username'
             type='text'
             onChange={formik.handleChange}
             value={formik.values.username}
+            label='Username'
+            variant='standard'
           />
           {formik.touched.username && formik.errors.username && (
             <div>{formik.errors.username}</div>
           )}
         </div>
         <div>
-          <label htmlFor='Password'>Password</label>
-          <input
+          <TextField
             id='password'
             name='password'
             type='password'
             onChange={formik.handleChange}
             value={formik.values.password}
+            label='Password'
+            variant='standard'
           />
           {formik.touched.password && formik.errors.password && (
             <div>{formik.errors.password}</div>
           )}
         </div>
-        <button type='submit'>Login</button>
-      </form>
+        <div style={{ paddingTop: '12px' }}>
+          <Button variant='outlined' type='submit' >Login</Button>
+        </div>
+      </FormControl>
       <p>
         Don't have an account? &nbsp;
-        <NavLink to='/signup' onClick={() => setShowLogin(false)}> Sign Up</NavLink>
+        <Button sx={{ textDecoration: 'none' }} as={NavLink} to='/signup' onClick={() => setShowLogin(false)}> Sign Up</Button>
       </p>
-    </>
+    </Grid>
   )
 }
 

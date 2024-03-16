@@ -4,6 +4,7 @@ import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../components/contexts/AuthContext';
 import { NavLink } from 'react-router-dom';
+import { Button, FormControl, Grid, TextField } from '@mui/material'
 
 const SignupForm = () => {
   const [error, setError] = useState(false)
@@ -49,82 +50,76 @@ const SignupForm = () => {
     }
   })
   return (
-    <>
+    <Grid container sx={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
       <h1>Sign Up</h1>
-      <form onSubmit={formik.handleSubmit}>
+      <FormControl onSubmit={formik.handleSubmit}>
         {error && <div>User Already Exist</div>}
         <div>
-          <label htmlFor='name'>Full Name</label>
-          <input
+          <TextField
             id='name'
             name='name'
             type='text'
             onChange={formik.handleChange}
             value={formik.values.name}
+            label="Full Name"
+            variant="standard"
           />
           {formik.touched.name && formik.errors.name && (
             <div>{formik.errors.name}</div>
           )}
         </div>
         <div>
-          <label htmlFor='username'>Username</label>
-          <input
+          <TextField
             id='username'
             name='username'
             type='text'
             onChange={formik.handleChange}
             value={formik.values.username}
+            label="Username"
+            variant="standard"
           />
           {formik.touched.username && formik.errors.username && (
             <div>{formik.errors.username}</div>
           )}
         </div>
         <div>
-          <label htmlFor='email'>Email</label>
-          <input
+          <TextField
             id='email'
             name='email'
             type='email'
             onChange={formik.handleChange}
             value={formik.values.email}
+            label="Email"
+            variant="standard"
           />
           {formik.touched.email && formik.errors.email && (
             <div>{formik.errors.email}</div>
           )}
         </div>
+
         <div>
-          <label htmlFor='image_url'>Image</label>
-          <input
-            id='image_url'
-            name='image_url'
-            type='text'
-            onChange={formik.handleChange}
-            value={formik.values.image_url}
-          />
-          {formik.touched.image_url && formik.errors.image_url && (
-            <div>{formik.errors.image_url}</div>
-          )}
-        </div>
-        <div>
-          <label htmlFor='Password'>Password</label>
-          <input
+          <TextField
             id='password'
             name='password'
             type='password'
             onChange={formik.handleChange}
             value={formik.values.password}
+            label="Password"
+            variant="standard"
           />
           {formik.touched.password && formik.errors.password && (
             <div>{formik.errors.password}</div>
           )}
         </div>
-        <button type='submit'>Submit</button>
-      </form>
+        <div style={{ paddingTop: '12px' }}>
+          <Button variant="outlined" type='submit'>Submit</Button>
+        </div>
+      </FormControl>
       <p>
         Already have an account? &nbsp;
-        <NavLink to='/login' onClick={() => setShowLogin(true)}>Log In</NavLink>
+        <Button sx={{ textDecoration: 'none' }} to='/login' as={NavLink} onClick={() => setShowLogin(true)}>Log In</Button>
       </p>
-    </>
+    </Grid>
   )
 }
 
