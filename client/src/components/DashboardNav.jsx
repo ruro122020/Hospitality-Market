@@ -21,7 +21,7 @@ const drawerWidth = 240;
 const DashboardNav = () => {
   const [pages, setPage] = useState([
     {
-      route: '/dashboard/appointments',
+      route: '/dashboard',
       page: 'Appointments'
     },
     {

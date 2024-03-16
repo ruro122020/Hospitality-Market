@@ -32,7 +32,7 @@ const routes = [
         element: <Dashboard />,
         children: [
           {
-            path: '/dashboard/appointments',
+            path: '/dashboard',
             element: <Appointments />
 
           },

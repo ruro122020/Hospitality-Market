@@ -80,7 +80,6 @@ const Navbar = () => {
       logout()
     }
   }
-
   return (
     <AppBar position="sticky" sx={{ borderRadius: '5px' }}>
       <Container maxWidth="xl">
