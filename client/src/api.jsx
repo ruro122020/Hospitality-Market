@@ -32,14 +32,15 @@ const apiLogin = async (values) => {
 const apiCheckSession = async () => {
   try {
     const res = await fetch('/api/check_session')
-    if (!res.ok) {
-      throw new Error('check_session not confirmed')
+    if (res.ok) {
+      return true
     }
-    return true
   } catch (error) {
     console.log('error in checksession route', error)
     return false
   }
+
+
 }
 
 const apiServices = async () => {
