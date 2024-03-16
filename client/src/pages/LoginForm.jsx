@@ -35,7 +35,7 @@ const LoginForm = () => {
   return (
     <Grid container sx={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
       <h1>Login</h1>
-      <FormControl onSubmit={formik.handleSubmit}>
+      <FormControl as='form' onSubmit={formik.handleSubmit}>
         {error && <div>Invalid Username or Password</div>}
         <div>
           <TextField
@@ -68,8 +68,7 @@ const LoginForm = () => {
         <div style={{ paddingTop: '12px' }}>
           <Button
             variant='outlined'
-            type='submit'
-            onClick={() => { navigate('/services') }} >Login</Button>
+            type='submit'>Login</Button>
         </div>
       </FormControl>
       <p>
