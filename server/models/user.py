@@ -9,9 +9,7 @@ class User(db.Model, SerializerMixin):
   __tablename__ = 'users'
 
   serialize_rules = ('-services.user', 
-                     '-_password_hash', 
-                     '-provider_bookings.provider', 
-                     '-consumer_bookings.consumer', )
+                     '-_password_hash')
 
   __table_args__ = (db.CheckConstraint('length(name) > 3', name='ck_user_name_length'),)
 
@@ -24,8 +22,6 @@ class User(db.Model, SerializerMixin):
 
   #relationships
   services = db.relationship('Service', back_populates='user', cascade='all, delete-orphan')
-  provider_bookings = db.relationship('Booking', foreign_keys='Booking.provider_id', back_populates='provider', cascade='all, delete-orphan')
-  consumer_bookings = db.relationship('Booking', foreign_keys='Booking.consumer_id', back_populates='consumer', cascade='all, delete-orphan')
 
   @validates('name')
   def validate_name(self, key, name):

@@ -12,8 +12,7 @@ class Signup(Resource):
     user = User(
       name=json.get('name'),
       username=json.get('username'),
-      email=json.get('email'),
-      image_url=json.get('image_url'))
+      email=json.get('email'))
     
     user.password_hash = json.get('password')
  

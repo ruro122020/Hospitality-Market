@@ -6,7 +6,7 @@ from config import db
 class Service(db.Model, SerializerMixin):
   __tablename__ = 'services'
 
-  serialize_rules=('-user.services', '-bookings.service')
+  serialize_rules=('-user.services',)
 
   id = db.Column(db.Integer, primary_key=True)
   title = db.Column(db.String, nullable=False)
@@ -18,6 +18,5 @@ class Service(db.Model, SerializerMixin):
 
   #relationship
   user = db.relationship('User', back_populates='services')
-  bookings = db.relationship('Booking', back_populates='service', cascade='all, delete-orphan')
 
 

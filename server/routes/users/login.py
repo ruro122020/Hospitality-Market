@@ -7,7 +7,7 @@ from models.models import User
 class Login(Resource):
   def post(self):
     json = request.get_json()
-    user = User.query.filter(User.username == json['username']).first()
+    user = User.query.filter(User.username == json.get('username')).first()
     if user:
       if user.authenticate(json.get('password')):
         session['user_id'] = user.id

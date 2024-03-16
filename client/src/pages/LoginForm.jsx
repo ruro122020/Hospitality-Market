@@ -66,7 +66,10 @@ const LoginForm = () => {
           )}
         </div>
         <div style={{ paddingTop: '12px' }}>
-          <Button variant='outlined' type='submit' >Login</Button>
+          <Button
+            variant='outlined'
+            type='submit'
+            onClick={() => { navigate('/services') }} >Login</Button>
         </div>
       </FormControl>
       <p>

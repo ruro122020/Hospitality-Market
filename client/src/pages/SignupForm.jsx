@@ -112,7 +112,7 @@ const SignupForm = () => {
           )}
         </div>
         <div style={{ paddingTop: '12px' }}>
-          <Button variant="outlined" type='submit'>Submit</Button>
+          <Button variant="outlined" onClick={() => navigate('/services')} type='submit'>Submit</Button>
         </div>
       </FormControl>
       <p>
