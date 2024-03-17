@@ -7,7 +7,7 @@ class CheckSession(Resource):
   def get(self):
     if session.get('user_id'):
       user = User.query.filter(User.id == session.get('user_id')).first()
-      return user.to_dict(rules=('-_password_hash',)), 200
+      return user.to_dict(), 200
     return {}, 401
 
 api.add_resource(CheckSession, '/check_session', endpoint='check_session')

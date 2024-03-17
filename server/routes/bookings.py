@@ -6,6 +6,12 @@ from sqlalchemy.exc import IntegrityError
 
 
 class Bookings(Resource):
+  def get(self):
+    bookings = Booking.query.all()
+    for booking in bookings:
+      print('booking', booking.to_dict())
+    return [booking.to_dict() for booking in bookings], 200
+  
   def post(self):
     json = request.get_json()
 
