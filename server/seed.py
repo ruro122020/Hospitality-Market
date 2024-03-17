@@ -19,6 +19,7 @@ if __name__ == '__main__':
         print('Deleting all records...')
         User.query.delete()
         Service.query.delete()
+        Booking.query.delete()
         print('Creating users...')
 
         users = []
@@ -65,19 +66,20 @@ if __name__ == '__main__':
 
         print('Creating Bookings...')
 
-        # bookings = []
+        bookings = []
 
-        # for i in range(10):
-        #   booking = Booking(
-        #      date=fake.date(),
-        #      time=fake.time(),
-        #      provider=random.choice(users),
-        #      consumer=random.choice(users),
-        #      service=random.choice(services)
-        #   )
-        #   bookings.append(booking)
-        # db.session.add_all(bookings)
-        # db.session.commit()
+        for i in range(10):
+          booking = Booking(
+             date=fake.date(),
+             time=fake.time(),
+             status = 'Pending',
+             provider=random.choice(users),
+             consumer=random.choice(users),
+             service=random.choice(services)
+          )
+          bookings.append(booking)
+        db.session.add_all(bookings)
+        db.session.commit()
 
         print('Complete.')
       

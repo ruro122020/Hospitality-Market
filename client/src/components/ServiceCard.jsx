@@ -8,9 +8,11 @@ import Typography from '@mui/joy/Typography';
 import BookmarkAdd from '@mui/icons-material/BookmarkAddOutlined';
 import { Grid } from '@mui/material';
 import { NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 const ServiceCard = ({ service }) => {
   const { title, description, location, price, user, category } = service
+  const navigate = useNavigate()
   return (
     <Grid sx={{ display: 'flex', paddingBottom: '30px' }} >
       <Card sx={{ width: 320 }}>
@@ -55,8 +57,7 @@ const ServiceCard = ({ service }) => {
             variant="solid"
             size="md"
             color="primary"
-            as={NavLink}
-            to=''
+            onClick={() => navigate('/')}
             sx={{ mt: 'auto', alignSelf: 'center', fontWeight: 600 }}
           >
             Book Appointment

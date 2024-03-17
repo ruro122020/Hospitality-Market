@@ -4,12 +4,16 @@ from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import validates
 from config import db, bcrypt
+from .booking import Booking
 
 class User(db.Model, SerializerMixin):
+  
   __tablename__ = 'users'
 
   serialize_rules = ('-services.user', 
-                     '-_password_hash')
+                     '-_password_hash',
+                     '-provider_bookings.provider',
+                     '-consumer_bookings.consumer')
 
   __table_args__ = (db.CheckConstraint('length(name) > 3', name='ck_user_name_length'),)
 
@@ -20,8 +24,12 @@ class User(db.Model, SerializerMixin):
   image_url = db.Column(db.String)
   _password_hash = db.Column(db.String, nullable=False)
 
-  #relationships
+  #relationship with User
   services = db.relationship('Service', back_populates='user', cascade='all, delete-orphan')
+
+  #relationship with bookings
+  provider_bookings = db.relationship('Booking', back_populates='provider', foreign_keys=[Booking.provider_id])
+  consumer_bookings = db.relationship('Booking', back_populates='consumer', foreign_keys=[Booking.consumer_id])
 
   @validates('name')
   def validate_name(self, key, name):

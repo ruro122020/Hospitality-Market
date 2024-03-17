@@ -6,7 +6,7 @@ from config import db
 class Service(db.Model, SerializerMixin):
   __tablename__ = 'services'
 
-  serialize_rules=('-user.services',)
+  serialize_rules=('-user.services', '-bookings.service')
 
   id = db.Column(db.Integer, primary_key=True)
   title = db.Column(db.String, nullable=False)
@@ -16,7 +16,10 @@ class Service(db.Model, SerializerMixin):
   category = db.Column(db.String, nullable=False)
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-  #relationship
+  #relationship with User
   user = db.relationship('User', back_populates='services')
+
+  #relationship with Bookings
+  bookings = db.relationship('Booking', back_populates='service')
 
 

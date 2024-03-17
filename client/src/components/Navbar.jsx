@@ -11,13 +11,11 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 
 import { NavLink } from 'react-router-dom'
 import { useAuth } from './contexts/AuthContext'
 import { apiLogout } from '../api'
 
-// const pages = ['Home', 'Services', 'Signup', 'Login'];
 const pages = [
   {
     route: '/',
@@ -36,7 +34,6 @@ const pages = [
     page: 'Login'
   }
 ]
-// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const settings = [
   {

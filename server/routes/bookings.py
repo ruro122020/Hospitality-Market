@@ -4,9 +4,7 @@ from config import app, db, api
 from models.models import Booking, User, Service
 from sqlalchemy.exc import IntegrityError
 
-#####RECURSSION ERROR HAPPENING
-###ERROR OCCURS WHEN TRYING TO ACCES USER.SERVICES
-####FIX BEFORE CONNECTING TO FRONTEND
+
 class Bookings(Resource):
   def post(self):
     json = request.get_json()
@@ -14,6 +12,7 @@ class Bookings(Resource):
     booking = Booking(
       date = json.get('date'),
       time = json.get('time'),
+      status = json.get('status'),
       provider_id = json.get('provider'),
       consumer_id = json.get('consumer'),
       service_id = json.get('service')
