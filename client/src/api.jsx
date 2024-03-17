@@ -2,7 +2,9 @@
 const apiLogout = async () => {
   try {
     const res = await fetch('/api/logout', { method: 'DELETE' })
-    const data = await res.json()
+    if (!res.ok) {
+      throw new Error('logout failed')
+    }
     return true
   } catch (error) {
     console.error('Error logging out: ', error)
@@ -32,9 +34,10 @@ const apiLogin = async (values) => {
 const apiCheckSession = async () => {
   try {
     const res = await fetch('/api/check_session')
-    if (res.ok) {
-      return true
+    if (!res.ok) {
+      throw new Error()
     }
+    return true
   } catch (error) {
     console.log('error in checksession route', error)
     return false

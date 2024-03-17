@@ -24,7 +24,10 @@ const pages = [
   {
     route: '/services',
     page: 'Services'
-  },
+  }
+]
+
+const identity = [
   {
     route: '/signup',
     page: 'Signup'
@@ -137,9 +140,20 @@ const Navbar = () => {
                   sx={{ my: 2, display: 'block' }}
                 >
                   {page}
-
                 </MenuItem>
               ))}
+              {!isLoggedIn &&
+                identity.map(({ route, page }) => (
+                  <MenuItem
+                    key={page}
+                    onClick={handleCloseNavMenu}
+                    component={NavLink}
+                    to={route}
+                    sx={{ my: 2, display: 'block' }}
+                  >
+                    {page}
+                  </MenuItem>
+                ))}
             </Menu>
           </Box>
           <Typography
@@ -173,6 +187,18 @@ const Navbar = () => {
                 {page}
               </Button>
             ))}
+            {!isLoggedIn &&
+              identity.map(({ route, page }) => (
+                <Button
+                  key={page}
+                  as={NavLink}
+                  to={route}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page}
+                </Button>
+              ))}
           </Box>
           {
             isLoggedIn &&
