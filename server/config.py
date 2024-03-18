@@ -9,6 +9,8 @@ from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 from dotenv import load_dotenv
+from flask_marshmallow import Marshmallow
+
 import os
 
 # Local imports
@@ -33,6 +35,9 @@ db = SQLAlchemy(metadata=metadata)
 migrate = Migrate(app, db)
 migrate.init_app(app, db, render_as_batch=True)
 db.init_app(app)
+
+# Instantiate Marshmellow
+ma = Marshmallow(app)
 
 # Instantiate Bcrypt
 bcrypt = Bcrypt(app)

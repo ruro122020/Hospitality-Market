@@ -5,7 +5,7 @@ import Services from './pages/Services'
 import LoginForm from "./pages/LoginForm";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Appointments from "./pages/dashboard/Appointments";
-import ServiceDashboard from './pages/dashboard/ServicesDashboard'
+import DService from './pages/dashboard/userServices/DServices'
 const routes = [
   {
     path: '/',
@@ -38,7 +38,7 @@ const routes = [
           },
           {
             path: '/dashboard/services',
-            element: <ServiceDashboard />
+            element: <DService />
           }
         ]
       }

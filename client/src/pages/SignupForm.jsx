@@ -52,7 +52,7 @@ const SignupForm = () => {
   return (
     <Grid container sx={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
       <h1>Sign Up</h1>
-      <FormControl as='form' onSubmit={formik.handleSubmit}>
+      <form onSubmit={formik.handleSubmit}>
         {error && <div>User Already Exist</div>}
         <div>
           <TextField
@@ -114,7 +114,7 @@ const SignupForm = () => {
         <div style={{ paddingTop: '12px' }}>
           <Button variant="outlined" type='submit'>Submit</Button>
         </div>
-      </FormControl>
+      </form>
       <p>
         Already have an account? &nbsp;
         <Button sx={{ textDecoration: 'none' }} to='/login' as={NavLink} onClick={() => setShowLogin(true)}>Log In</Button>
