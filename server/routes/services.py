@@ -1,4 +1,4 @@
-from flask import request, session, jsonify
+from flask import request, session
 from flask_restful import Resource
 from config import app, db, api, ma
 from models.models import Service, User
@@ -32,8 +32,7 @@ class ServiceSchema(ma.Schema):
 
   url = ma.Hyperlinks(
     {
-        # "self": ma.URLFor("services", values=dict(id="<id>")),
-        "collection": ma.URLFor("services"),
+        "collection": ma.URLFor("services")
     }
 )
   
@@ -63,14 +62,9 @@ class Services(Resource):
     try:
       db.session.add(service)
       db.session.commit()
-      return service.to_dict(), 201
+      return services_schema.dump(service), 201
     except IntegrityError:
       return {'error': 'Unproccessable Entity'}, 422
 
 
-class ServiceByID(Resource):
-
-  pass
-
 api.add_resource(Services, '/services', endpoint='services')
-api.add_resource(Services, '/services/<int:id>', endpoint='service')

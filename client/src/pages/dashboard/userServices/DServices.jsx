@@ -18,7 +18,6 @@ const DServices = () => {
       setCreateService(false)
     }
   }
-  console.log('services', services)
 
   return (
     <div>
