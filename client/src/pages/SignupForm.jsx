@@ -4,7 +4,7 @@ import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../components/contexts/AuthContext';
 import { NavLink } from 'react-router-dom';
-import { Button, FormControl, Grid, TextField } from '@mui/material'
+import { Button, Grid, TextField } from '@mui/material'
 
 const SignupForm = () => {
   const [error, setError] = useState(false)

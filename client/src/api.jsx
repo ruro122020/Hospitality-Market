@@ -59,4 +59,38 @@ const apiServices = async () => {
     return false
   }
 }
-export { apiLogout, apiLogin, apiCheckSession, apiServices }
+
+const post = async (url, body) => {
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    })
+    if (!res.ok) {
+      throw new Error('Post to database failed')
+    }
+    const service = await res.json()
+    return service
+  } catch (err) {
+    console.log('err', err)
+    return false
+  }
+}
+
+const getData = async (url) => {
+  try {
+    const res = await fetch(url)
+    if (!res.ok) {
+      throw new Error('Fetch to database failed')
+    }
+    const data = await res.json()
+    return data
+  } catch (err) {
+    console.log('err', err)
+    return false
+  }
+}
+export { apiLogout, apiLogin, apiCheckSession, apiServices, post, getData }
