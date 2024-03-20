@@ -94,4 +94,20 @@ const getData = async (url) => {
     return false
   }
 }
-export { apiLogout, apiLogin, apiCheckSession, apiServices, post, getData }
+
+const deleteData = async (url) => {
+  try {
+    const res = await fetch(url, { method: 'Delete', headers: { "Content-Type": 'application/json' } })
+
+    if (!res.ok) {
+      throw new Error('Could not delete')
+    }
+    const data = await res.json()
+    return data
+  } catch (err) {
+    console.log('err delete', err)
+  }
+}
+
+
+export { apiLogout, apiLogin, apiCheckSession, apiServices, post, getData, deleteData }

@@ -36,7 +36,7 @@ class ServiceSchema(ma.Schema):
     }
 )
   
-
+service_schema = ServiceSchema()
 services_schema = ServiceSchema(many=True)
 
 class Services(Resource):
@@ -62,7 +62,7 @@ class Services(Resource):
     try:
       db.session.add(service)
       db.session.commit()
-      return services_schema.dump(service), 201
+      return service_schema.dump(service), 201
     except IntegrityError:
       return {'error': 'Unproccessable Entity'}, 422
 

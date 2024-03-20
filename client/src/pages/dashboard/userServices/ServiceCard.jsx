@@ -7,11 +7,15 @@ import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import BookmarkAdd from '@mui/icons-material/BookmarkAddOutlined';
 import { Grid } from '@mui/material';
+import { getData, deleteData } from '../../../api'
 
-const ServiceCard = ({ service }) => {
+const ServiceCard = ({ service, handleDelete }) => {
   const { id, title, category, description, location, price, user_id } = service
 
-  const handleDelete = () => { }
+  const deleteService = async () => {
+    const service = await deleteData(`/api/services/${id}`)
+    handleDelete(id)
+  }
   const handleEdit = () => { }
 
   return (
@@ -59,7 +63,7 @@ const ServiceCard = ({ service }) => {
               variant="solid"
               size="md"
               color="primary"
-              onClick={handleDelete}
+              onClick={deleteService}
               sx={{ mt: 'auto', alignSelf: 'center', fontWeight: 600, backgroundColor: 'red' }}
             >
               Delete

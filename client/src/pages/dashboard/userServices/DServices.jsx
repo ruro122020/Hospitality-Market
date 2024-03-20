@@ -23,6 +23,12 @@ const DServices = () => {
     }
   }
 
+  const deleteService = (id) => {
+    setServices((prevState) => {
+      return prevState.filter(service => service.id !== id)
+    })
+  }
+
   if (!services) return <div>Loading Services ...</div>
   return (
     <div>
@@ -30,7 +36,7 @@ const DServices = () => {
       <Button onClick={() => setCreateService(true)}> + Service</Button>
       {createService && <Form getServiceData={handleServiceData} />}
       <Grid container sx={{ display: 'flex', justifyContent: 'space-evenly', paddingTop: '15px' }}>
-        {services.map(service => <ServiceCard key={service.id} service={service} />)}
+        {services.map(service => <ServiceCard key={service.id} service={service} handleDelete={deleteService} />)}
       </Grid>
 
     </div>
