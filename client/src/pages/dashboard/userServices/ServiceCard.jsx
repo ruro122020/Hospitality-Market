@@ -7,26 +7,19 @@ import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import BookmarkAdd from '@mui/icons-material/BookmarkAddOutlined';
 import { Grid } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 
 const ServiceCard = ({ service }) => {
-  const { title, description, location, price, user, category } = service
-  const navigate = useNavigate()
+  const { id, title, category, description, location, price, user_id } = service
+
+  const handleDelete = () => { }
+  const handleEdit = () => { }
+
   return (
-    <Grid sx={{ display: 'flex', paddingBottom: '30px' }} >
+    <Grid sx={{ display: 'flex', paddingBottom: '30px', paddingRight: '15px' }} >
       <Card sx={{ width: 320 }}>
         <div>
           <Typography level="title-lg">{title}</Typography>
           <Typography level="body-sm">{location}</Typography>
-          <IconButton
-            aria-label="bookmark Bahamas Islands"
-            variant="plain"
-            color="neutral"
-            size="sm"
-            sx={{ position: 'absolute', top: '0.875rem', right: '0.5rem' }}
-          >
-            <BookmarkAdd />
-          </IconButton>
         </div>
         <AspectRatio minHeight="120px" maxHeight="200px">
           <img
@@ -52,15 +45,26 @@ const ServiceCard = ({ service }) => {
               ${price}
             </Typography>
           </div>
-          <Button
-            variant="solid"
-            size="md"
-            color="primary"
-            onClick={() => navigate('/')}
-            sx={{ mt: 'auto', alignSelf: 'center', fontWeight: 600 }}
-          >
-            Book Appointment
-          </Button>
+          <div>
+            <Button
+              variant="solid"
+              size="md"
+              color="primary"
+              onClick={handleEdit}
+              sx={{ mt: 'auto', alignSelf: 'center', fontWeight: 600, backgroundColor: 'Orange' }}
+            >
+              Edit
+            </Button>
+            <Button
+              variant="solid"
+              size="md"
+              color="primary"
+              onClick={handleDelete}
+              sx={{ mt: 'auto', alignSelf: 'center', fontWeight: 600, backgroundColor: 'red' }}
+            >
+              Delete
+            </Button>
+          </div>
         </CardContent>
       </Card>
     </Grid >

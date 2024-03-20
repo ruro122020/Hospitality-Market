@@ -19,7 +19,7 @@ const Services = () => {
   if (!services) return <p>Server Not Responding</p>
 
   return (
-    <Grid container sx={{ display: 'flex', justifyContent: 'space-evenly', paddingTop: '15px' }} className='con-tainer'>
+    <Grid container sx={{ display: 'flex', justifyContent: 'space-evenly', paddingTop: '15px' }}>
       {services.map(service => (
         <ServiceCard key={service.id} service={service} />
       ))}

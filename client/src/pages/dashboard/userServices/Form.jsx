@@ -36,9 +36,9 @@ const Form = ({ getServiceData }) => {
 
 
   return (
-    <Grid container sx={{ display: 'flex', flexDirection: 'column' }} >
+    <Grid container sx={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }} >
       <h2>Create Service</h2>
-      <form onSubmit={formik.handleSubmit} style={{ display: 'flex', textAlign: 'center' }}>
+      <form onSubmit={formik.handleSubmit} style={{ display: 'flex', textAlign: 'center', justifyContent: 'space-around' }}>
         <div>
           <TextField
             id='title'
@@ -113,7 +113,7 @@ const Form = ({ getServiceData }) => {
           <Button type='submit' sx={{}}>Create Service</Button>
         </FormControl>
       </form>
-    </Grid>
+    </Grid >
   )
 }
 

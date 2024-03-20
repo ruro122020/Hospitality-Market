@@ -37,7 +37,8 @@ const apiCheckSession = async () => {
     if (!res.ok) {
       throw new Error()
     }
-    return true
+    const data = await res.json()
+    return data
   } catch (error) {
     console.log('error in checksession route', error)
     return false
