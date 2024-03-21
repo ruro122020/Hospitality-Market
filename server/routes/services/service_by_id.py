@@ -7,6 +7,19 @@ from flask_marshmallow.fields import fields
 
 
 class ServiceByID(Resource):
+  
+  def patch(self, id):
+    service = Service.query.filter_by(id=id).first()
+    if service:
+      json = request.get_json()
+
+      for attr in json:
+        setattr(service, attr, json.get(attr))
+
+      db.session.add(service)
+      db.session.commit()
+    return service.to_dict(), 200
+
   def delete(self, id):
     service = Service.query.filter_by(id=id).first()
     try:
