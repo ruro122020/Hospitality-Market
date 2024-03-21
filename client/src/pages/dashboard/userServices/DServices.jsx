@@ -17,9 +17,10 @@ const DServices = () => {
     checkIfLoggedIn()
   }, [])
 
-  const handleServiceData = (newService) => {
+  const handleServiceForm = (newService) => {
     if (newService) {
       setCreateService(false)
+      setServices(prevState => [...prevState, newService])
     }
   }
 
@@ -34,7 +35,7 @@ const DServices = () => {
     <div>
       <h1>Services</h1>
       <Button onClick={() => setCreateService(true)}> + Service</Button>
-      {createService && <Form getServiceData={handleServiceData} />}
+      {createService && <Form getServiceData={handleServiceForm} />}
       <Grid container sx={{ display: 'flex', justifyContent: 'space-evenly', paddingTop: '15px' }}>
         {services.map(service => <ServiceCard key={service.id} service={service} handleDelete={deleteService} />)}
       </Grid>

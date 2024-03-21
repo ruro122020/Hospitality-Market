@@ -10,6 +10,7 @@ import * as yup from 'yup'
 import { post } from '../../../api';
 
 const Form = ({ getServiceData }) => {
+
   const formSchema = yup.object().shape({
     title: yup.string().required('Must have a title'),
     description: yup.string().required('Must have a description'),
@@ -31,7 +32,6 @@ const Form = ({ getServiceData }) => {
       getServiceData(res)
       resetForm()
     }
-
   })
 
 
@@ -110,7 +110,7 @@ const Form = ({ getServiceData }) => {
           {formik.touched.category && formik.errors.category && (
             <div>{formik.errors.category}</div>
           )}
-          <Button type='submit' sx={{}}>Create Service</Button>
+          <Button type='submit' >Create Service</Button>
         </FormControl>
       </form>
     </Grid >
