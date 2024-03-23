@@ -3,20 +3,17 @@ import AspectRatio from '@mui/joy/AspectRatio';
 import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
-import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
-import BookmarkAdd from '@mui/icons-material/BookmarkAddOutlined';
 import { Grid } from '@mui/material';
-import { getData, deleteData } from '../../../api'
+import { deleteData } from '../../../api'
 
-const ServiceCard = ({ service, handleDelete }) => {
+const ServiceCard = ({ service, onDelete, onEdit }) => {
   const { id, title, category, description, location, price, user_id } = service
 
   const deleteService = async () => {
     const service = await deleteData(`/api/services/${id}`)
-    handleDelete(id)
+    onDelete(id)
   }
-  const handleEdit = () => { }
 
   return (
     <Grid sx={{ display: 'flex', paddingBottom: '30px', paddingRight: '15px' }} >
@@ -54,7 +51,7 @@ const ServiceCard = ({ service, handleDelete }) => {
               variant="solid"
               size="md"
               color="primary"
-              onClick={handleEdit}
+              onClick={() => onEdit(service)}
               sx={{ mt: 'auto', alignSelf: 'center', fontWeight: 600, backgroundColor: 'Orange' }}
             >
               Edit

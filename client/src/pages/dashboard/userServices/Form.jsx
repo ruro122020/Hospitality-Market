@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useFormik } from 'formik'
 import { Button, TextField } from '@mui/material'
 import Grid from '@mui/material/Grid'
@@ -7,10 +7,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import * as yup from 'yup'
-import { post } from '../../../api';
 
-const Form = ({ getServiceData }) => {
-
+const Form = ({ onSubmit, initialValues }) => {
   const formSchema = yup.object().shape({
     title: yup.string().required('Must have a title'),
     description: yup.string().required('Must have a description'),
@@ -19,21 +17,14 @@ const Form = ({ getServiceData }) => {
     category: yup.string().required('Must have a category')
   })
   const formik = useFormik({
-    initialValues: {
-      title: '',
-      description: '',
-      price: '',
-      location: '',
-      category: ''
-    },
+    initialValues: initialValues,
+    enableReinitialize: true,
     validationSchema: formSchema,
     onSubmit: async (values, { resetForm }) => {
-      const res = await post('/api/services', values)
-      getServiceData(res)
+      onSubmit(values)
       resetForm()
     }
   })
-
 
   return (
     <Grid container sx={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }} >
@@ -103,14 +94,14 @@ const Form = ({ getServiceData }) => {
             onChange={formik.handleChange}
             label="Category"
           >
-            <MenuItem value='House Cleaning'>House Cleaning</MenuItem>
+            <MenuItem value='House Cleaning'>Cleaning</MenuItem>
             <MenuItem value='Landscaping'>Landscaping </MenuItem>
             <MenuItem value='Pet'>Pet</MenuItem>
           </Select>
           {formik.touched.category && formik.errors.category && (
             <div>{formik.errors.category}</div>
           )}
-          <Button type='submit' >Create Service</Button>
+          <Button type='submit' >Submit</Button>
         </FormControl>
       </form>
     </Grid >

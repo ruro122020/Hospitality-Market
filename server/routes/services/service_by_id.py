@@ -12,13 +12,16 @@ class ServiceByID(Resource):
     service = Service.query.filter_by(id=id).first()
     if service:
       json = request.get_json()
-
       for attr in json:
         setattr(service, attr, json.get(attr))
 
+    try:
       db.session.add(service)
       db.session.commit()
-    return service.to_dict(), 200
+      return service.to_dict(), 200
+    except IntegrityError:
+      return {"error": "Service could not be updated"}
+    
 
   def delete(self, id):
     service = Service.query.filter_by(id=id).first()

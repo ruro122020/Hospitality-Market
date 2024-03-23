@@ -76,7 +76,7 @@ const post = async (url, body) => {
     const service = await res.json()
     return service
   } catch (err) {
-    console.log('err', err)
+    console.log('post error', err)
     return false
   }
 }
@@ -90,7 +90,7 @@ const getData = async (url) => {
     const data = await res.json()
     return data
   } catch (err) {
-    console.log('err', err)
+    console.log('fetch error', err)
     return false
   }
 }
@@ -105,9 +105,39 @@ const deleteData = async (url) => {
     const data = await res.json()
     return data
   } catch (err) {
-    console.log('err delete', err)
+    console.log('delete error', err)
+  }
+}
+
+const update = async (url, service) => {
+  try {
+    const res = await fetch(url, {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": 'application/json'
+      },
+      body: JSON.stringify(service)
+    })
+    if (!res.ok) {
+      throw new Error('update not successful')
+    }
+    const updatedService = await res.json()
+    return updatedService
+
+  } catch (err) {
+    console.log('update error', err)
+    return false
   }
 }
 
 
-export { apiLogout, apiLogin, apiCheckSession, apiServices, post, getData, deleteData }
+export {
+  apiLogout,
+  apiLogin,
+  apiCheckSession,
+  apiServices,
+  post,
+  getData,
+  deleteData,
+  update
+}
