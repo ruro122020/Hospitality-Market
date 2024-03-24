@@ -48,7 +48,7 @@ const settings = [
     page: 'Account'
   },
   {
-    route: '/dashboard',
+    route: '/user',
     page: 'Dashboard'
   }
 ]

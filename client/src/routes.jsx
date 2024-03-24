@@ -28,16 +28,15 @@ const routes = [
         element: <LoginForm />
       },
       {
-        path: '/dashboard',
+        path: '/user',
         element: <Dashboard />,
         children: [
           {
-            path: '/dashboard',
+            path: '/user',
             element: <Appointments />
-
           },
           {
-            path: '/dashboard/services',
+            path: '/user/services',
             element: <DService />
           }
         ]
