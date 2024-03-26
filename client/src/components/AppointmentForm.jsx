@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
-import DatePicker from 'react-datepicker'
 import { Button, Grid, TextField } from '@mui/material'
-import "react-datepicker/dist/react-datepicker.css"
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs';
+
+
 /***
  * Form:
  * - consumer name
@@ -21,17 +25,17 @@ import "react-datepicker/dist/react-datepicker.css"
  */
 
 const AppointmentForm = () => {
-  const [startDate, setStartDate] = useState(new Date());
-
-  const formSchema = {}
+  const formSchema = yup.object().shape({
+    name: yup.string().required("Must Enter Name"),
+    date: yup.date().required("Must Enter Date")
+  })
 
   const formik = useFormik({
     initialValues: {
       name: '',
-      date: Date.now(),
-      time: ''
+      date: null
     },
-    // validationSchema: formSchema,
+    validationSchema: formSchema,
     onSubmit: (values) => {
       console.log('values', values)
     }
@@ -47,20 +51,19 @@ const AppointmentForm = () => {
           onChange={formik.handleChange}
           value={formik.values.name}
           label='Full Name'
-          variant='standard' />
+          variant='standard'
+        />
       </div>
-      <div>
-        <label>Date</label>
-        <DatePicker
-          id="date"
-          name="date"
-          selected={formik.values.date}
-          onChange={(value) => {
-            formik.setFieldValue('date', Date.parse(value))
-          }}
-          renderInput={(params) => <TextField {...params} />} />
-      </div>
-      {/* <Button>Make Appointment</Button> */}
+
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DateTimePicker
+          label='Select Date and Time'
+          slotProps={{ textField: { variant: 'standard' } }}
+          value={formik.values.date ? dayjs(formik.values.date) : null}
+          onChange={(value) => formik.setFieldValue("date", value, true)}
+        />
+      </LocalizationProvider>
+      <Button>Make Appointment</Button>
     </form>
   )
 }

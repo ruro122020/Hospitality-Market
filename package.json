@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "react-calendar": "^4.8.0",
-    "react-datepicker": "^6.6.0"
-  }
-}
