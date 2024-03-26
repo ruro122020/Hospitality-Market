@@ -20,7 +20,7 @@ const Services = () => {
 
   return (
     <Grid container sx={{ display: 'flex', justifyContent: 'space-evenly', paddingTop: '15px' }}>
-      {services.map(service => (
+      {services.map((service) => (
         <ServiceCard key={service.id} service={service} />
       ))}
     </Grid>

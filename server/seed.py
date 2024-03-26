@@ -55,7 +55,7 @@ if __name__ == '__main__':
             title=fake.company(),
             description=fake.paragraph(),
             price=random.choice(prices),
-            location=fake.address(),
+            location=fake.state(),
             category=random.choice(category),
             user=random.choice(users)
           )

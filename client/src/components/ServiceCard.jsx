@@ -12,11 +12,12 @@ import { useNavigate } from 'react-router-dom';
 const ServiceCard = ({ service }) => {
   const { title, description, location, price, user, category } = service
   const navigate = useNavigate()
+
   return (
     <Grid sx={{ display: 'flex', paddingBottom: '30px' }} >
       <Card sx={{ width: 320 }}>
         <div>
-          <Typography level="title-lg">{title}</Typography>
+          <Typography level="title-lg">{user.name}</Typography>
           <Typography level="body-sm">{location}</Typography>
           <IconButton
             aria-label="bookmark Bahamas Islands"
@@ -36,6 +37,7 @@ const ServiceCard = ({ service }) => {
             alt=""
           />
         </AspectRatio>
+        <Typography level="title-lg">{title}</Typography>
         <div>
           <Typography level="body-sm" sx={{}}>{description}</Typography>
         </div>
@@ -56,7 +58,7 @@ const ServiceCard = ({ service }) => {
             variant="solid"
             size="md"
             color="primary"
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/user/appointment')}
             sx={{ mt: 'auto', alignSelf: 'center', fontWeight: 600 }}
           >
             Book Appointment

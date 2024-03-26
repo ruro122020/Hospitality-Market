@@ -28,6 +28,7 @@ class ServiceSchema(ma.Schema):
   location = ma.String()
   category = ma.String()
   user = fields.Nested(UserSchema)
+  id = ma.Number()
 
 
   url = ma.Hyperlinks(

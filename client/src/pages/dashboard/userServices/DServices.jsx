@@ -1,14 +1,3 @@
-/**
- * when edit button is clicked:
- *  - Use Form Component to edit a service
- *  - Populate the Form component with the info from the service card 
- * 
- * When new data is submitted:
- *  - save new data to server
- *  - update new data in service card
- * 
- */
-
 import React, { useEffect, useState } from 'react'
 import Form from './Form'
 import { apiCheckSession } from '../../../api'
