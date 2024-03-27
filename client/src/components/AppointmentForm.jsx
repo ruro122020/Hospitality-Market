@@ -1,13 +1,3 @@
-import React, { useState } from 'react'
-import { useFormik } from 'formik'
-import * as yup from 'yup'
-import { Button, Grid, TextField } from '@mui/material'
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import dayjs from 'dayjs';
-
-
 /***
  * Form:
  * - consumer name
@@ -23,11 +13,21 @@ import dayjs from 'dayjs';
  * time
  * status
  */
+import React, { useState } from 'react'
+import { useFormik } from 'formik'
+import * as yup from 'yup'
+import { Button, Grid, TextField } from '@mui/material'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs';
+
+
 
 const AppointmentForm = () => {
   const formSchema = yup.object().shape({
     name: yup.string().required("Must Enter Name"),
-    date: yup.date().required("Must Enter Date")
+    date: yup.date().required("Must Enter Date and Time")
   })
 
   const formik = useFormik({
@@ -63,7 +63,7 @@ const AppointmentForm = () => {
           onChange={(value) => formik.setFieldValue("date", value, true)}
         />
       </LocalizationProvider>
-      <Button>Make Appointment</Button>
+      <Button type='submit'>Make Appointment</Button>
     </form>
   )
 }
