@@ -6,7 +6,6 @@ import LoginForm from "./pages/LoginForm";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Appointments from "./pages/dashboard/Appointments";
 import DService from './pages/dashboard/userServices/DServices'
-import AppointmentForm from "./components/AppointmentForm";
 const routes = [
   {
     path: '/',
@@ -39,10 +38,6 @@ const routes = [
           {
             path: '/user/services',
             element: <DService />
-          },
-          {
-            path: '/user/appointment',
-            element: <AppointmentForm />
           }
         ]
       },
