@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -12,12 +12,14 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import { useFormik } from 'formik'
 import * as yup from 'yup'
-
+import Alert from '@mui/material/Alert';
+import { useUser } from './contexts/UserContext'
+import { post } from '../api'
 //this is connected to using the toLocaleString method
 dayjs.extend(window.dayjs_plugin_customParseFormat);
 
-const PopupForm = ({ setOpen, open, service }) => {
-
+const PopupForm = ({ setOpen, open, service, setApptStatus }) => {
+  const { user } = useUser()
   const handleClose = () => {
     setOpen(false);
   };
@@ -33,9 +35,9 @@ const PopupForm = ({ setOpen, open, service }) => {
       date: null
     },
     validationSchema: formSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       const dateTime = values.date.$d
-      const requestBooking = {
+      const appointment = {
         name: values.name,
         date: dateTime.toLocaleString('default', {
           year: 'numeric',
@@ -47,11 +49,16 @@ const PopupForm = ({ setOpen, open, service }) => {
           minute: '2-digit',
         }),
         serviceId: service.id,
+        //service object has the provider id in the nested user property
         providerId: service.user.id,
-
+        consumerId: user.id,
+        status: 'Pending'
       }
-      console.log(requestBooking)
-
+      const postedAppt = await post('/api/bookings', appointment)
+      if (postedAppt) {
+        handleClose()
+        setApptStatus(true)
+      }
     }
   })
 
@@ -77,7 +84,9 @@ const PopupForm = ({ setOpen, open, service }) => {
               variant='standard'
             />
             {formik.touched.name && formik.errors.name && (
-              <div>{formik.errors.name}</div>
+              <Alert severity="error">
+                {formik.errors.name}
+              </Alert>
             )}
           </div>
           <div>
@@ -94,7 +103,9 @@ const PopupForm = ({ setOpen, open, service }) => {
               />
             </LocalizationProvider>
             {formik.touched.date && formik.errors.date && (
-              <div>{formik.errors.date}</div>
+              <Alert severity="error">
+                {formik.errors.date}
+              </Alert>
             )}
           </div>
         </DialogContent>

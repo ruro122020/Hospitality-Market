@@ -19,16 +19,15 @@ class Bookings(Resource):
       date = json.get('date'),
       time = json.get('time'),
       status = json.get('status'),
-      provider_id = json.get('provider'),
-      consumer_id = json.get('consumer'),
-      service_id = json.get('service')
+      provider_id = json.get('providerId'),
+      consumer_id = json.get('consumerId'),
+      service_id = json.get('serviceId')
     )
 
     try:
       db.session.add(booking)
       db.session.commit()
-
-      return booking.to_dict(), 200
+      return booking.to_dict(rules=('-provider_id', '-consumer_id', '-service_id')), 200
     except IntegrityError:
       return {'error': 'Unproccessable Entity'}, 422
 

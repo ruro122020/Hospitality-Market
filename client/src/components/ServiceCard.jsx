@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AspectRatio from '@mui/joy/AspectRatio';
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
@@ -9,14 +9,21 @@ import { Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import PopupForm from './PopupForm';
-
+import { useAuth } from './contexts/AuthContext'
 
 const ServiceCard = ({ service }) => {
   const { title, description, location, price, user, category } = service
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false)
+  const [apptStatus, setApptStatus] = useState(false)
+  const { isLoggedIn } = useAuth()
+  const navigate = useNavigate()
 
   const handleClickOpen = () => {
-    setOpen(true);
+    if (isLoggedIn) {
+      setOpen(true);
+    } else {
+      navigate('/login')
+    }
   };
 
   return (
@@ -60,10 +67,14 @@ const ServiceCard = ({ service }) => {
               ${price}
             </Typography>
           </div>
-          <Button variant="outlined" onClick={handleClickOpen}>
-            Book Appointment
-          </Button>
-          <PopupForm setOpen={setOpen} open={open} service={service} />
+          {apptStatus ?
+            <Button disabled variant="outlined"> Requested</Button>
+            :
+            <Button variant="outlined" onClick={handleClickOpen}>
+              Book Appointment
+            </Button>
+          }
+          <PopupForm setOpen={setOpen} open={open} service={service} setApptStatus={setApptStatus} />
         </CardContent>
       </Card>
     </Grid >
