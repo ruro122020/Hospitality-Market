@@ -6,20 +6,27 @@ import { apiCheckSession } from '../../../api'
 
 const Appointments = () => {
   const { isLoggedIn } = useAuth()
-  const { setUser, user } = useUser()
+  const [consumer, setConsumer] = useState(null)
+  const [provider, setProvider] = useState(null)
+
   useEffect(() => {
     const getUser = async () => {
       if (isLoggedIn) {
         const user = await apiCheckSession()
-        setUser(user)
+        setConsumer(user.consumer_bookings)
+        setProvider(user.provider_bookings)
       }
     }
     getUser()
   }, [])
+  const handleDelete = async (apptObj) => {
+    const newConsumerList = consumer.filter(appt => appt.id !== apptObj.id)
+    setConsumer(newConsumerList)
+  }
   return (
     <div>
       <h1>Service Appointment</h1>
-      {user && user.consumer_bookings.map(appt => <ApptCard key={appt.id} appt={appt} />)}
+      {consumer && consumer.map(appt => <ApptCard key={appt.id} appt={appt} onDelete={handleDelete} />)}
     </div>
   )
 }

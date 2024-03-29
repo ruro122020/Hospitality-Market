@@ -25,7 +25,6 @@ const PopupForm = ({ setOpen, open, service }) => {
   const handleClose = () => {
     setOpen(false);
   };
-
   const formSchema = yup.object().shape({
     name: yup.string().required("Must Enter Name"),
     date: yup.date().required("Must Enter Date and Time")

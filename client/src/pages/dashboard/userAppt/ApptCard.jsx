@@ -5,11 +5,14 @@ import CardActions from '@mui/material/CardActions'
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
+import { deleteData } from '../../../api';
 
-const ApptCard = ({ appt }) => {
-  const { date, time, status, service } = appt
+const ApptCard = ({ appt, onDelete }) => {
+  const { date, time, status, service, id } = appt
 
-  const handleDelete = () => {
+  const deleteAppointment = async () => {
+    const booking = await deleteData(`/api/bookings/${id}`)
+    onDelete(appt)
 
   }
   return (
@@ -42,7 +45,7 @@ const ApptCard = ({ appt }) => {
         </Box>
       </CardContent>
       <CardActions>
-        <Button onClick={handleDelete} size="small">Cancel</Button>
+        <Button onClick={deleteAppointment} size="small">Cancel</Button>
       </CardActions>
     </Card>
   )
