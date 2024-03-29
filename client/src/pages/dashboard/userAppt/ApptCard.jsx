@@ -8,6 +8,10 @@ import { Box } from '@mui/material';
 
 const ApptCard = ({ appt }) => {
   const { date, time, status, service } = appt
+
+  const handleDelete = () => {
+
+  }
   return (
     <Card>
       <CardContent>
@@ -38,7 +42,7 @@ const ApptCard = ({ appt }) => {
         </Box>
       </CardContent>
       <CardActions>
-        <Button size="small">Cancel</Button>
+        <Button onClick={handleDelete} size="small">Cancel</Button>
       </CardActions>
     </Card>
   )

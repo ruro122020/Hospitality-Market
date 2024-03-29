@@ -30,7 +30,7 @@ class ServiceByID(Resource):
       db.session.commit()
       return {}, 200
     except IntegrityError:
-      return {'error': 'Service could not be deleted'}
+      return {'error': 'Service could not be deleted'}, 404
 
 
 api.add_resource(ServiceByID, '/services/<int:id>', endpoint='service_id')
