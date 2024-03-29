@@ -13,8 +13,10 @@ const ApptCard = ({ appt, onDelete, isProvider }) => {
   const deleteAppointment = async () => {
     const booking = await deleteData(`/api/bookings/${id}`)
     onDelete(appt)
-
   }
+  const handleAcceptClick = () => { }
+  const handleRejectClick = () => { }
+
   return (
     <Card>
       <CardContent>
@@ -47,8 +49,8 @@ const ApptCard = ({ appt, onDelete, isProvider }) => {
       <CardActions>
         {isProvider ?
           <>
-            <Button onClick={deleteAppointment} size="small">Reject</Button>
-            <Button onClick={deleteAppointment} size="small">Accept</Button>
+            <Button onClick={handleRejectClick} size="small">Reject</Button>
+            <Button onClick={handleAcceptClick} size="small">Accept</Button>
           </>
           :
           <Button onClick={deleteAppointment} size="small">Cancel</Button>
