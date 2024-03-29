@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
 import { deleteData } from '../../../api';
 
-const ApptCard = ({ appt, onDelete }) => {
+const ApptCard = ({ appt, onDelete, isProvider }) => {
   const { date, time, status, service, id } = appt
 
   const deleteAppointment = async () => {
@@ -45,7 +45,15 @@ const ApptCard = ({ appt, onDelete }) => {
         </Box>
       </CardContent>
       <CardActions>
-        <Button onClick={deleteAppointment} size="small">Cancel</Button>
+        {isProvider ?
+          <>
+            <Button onClick={deleteAppointment} size="small">Reject</Button>
+            <Button onClick={deleteAppointment} size="small">Accept</Button>
+          </>
+          :
+          <Button onClick={deleteAppointment} size="small">Cancel</Button>
+
+        }
       </CardActions>
     </Card>
   )

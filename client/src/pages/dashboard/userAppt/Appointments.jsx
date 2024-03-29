@@ -8,7 +8,6 @@ const Appointments = () => {
   const { isLoggedIn } = useAuth()
   const [consumer, setConsumer] = useState([])
   const [provider, setProvider] = useState([])
-
   useEffect(() => {
     const getUser = async () => {
       if (isLoggedIn) {
@@ -25,6 +24,10 @@ const Appointments = () => {
       const newConsumerList = consumer.filter(appt => appt.id !== apptObj.id)
       setConsumer(newConsumerList)
     }
+    if (type === 'provider') {
+      const newProviderList = provider.filter(appt => appt.id !== apptObj.id)
+      setProvider(newProviderList)
+    }
   }
   console.log('consumer', consumer)
   console.log('provider', provider)
@@ -36,15 +39,15 @@ const Appointments = () => {
       {consumer.length > 0 && (
         <>
           <h1>Service Appointments</h1>
-          {consumer.map(appt => <ApptCard key={appt.id} appt={appt} onDelete={() => handleDelete(appt, 'consumer')} />)}
+          {consumer.map(appt => <ApptCard key={appt.id} appt={appt} onDelete={() => handleDelete(appt, 'consumer')} isProvider={false} />)}
         </>
       )}
-      {/* {provider.length > 0 && (
+      {provider.length > 0 && (
         <>
           <h1>Provider Appointments</h1>
-          {provider.map(appt => <ApptCard key={appt.id} appt={appt} onDelete={handleDelete} />)}
+          {provider.map(appt => <ApptCard key={appt.id} appt={appt} onDelete={() => handleDelete(appt, 'provider')} isProvider={true} />)}
         </>
-      )} */}
+      )}
     </div>
   )
 }
