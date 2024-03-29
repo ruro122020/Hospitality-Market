@@ -15,11 +15,13 @@ import * as yup from 'yup'
 import Alert from '@mui/material/Alert';
 import { useUser } from './contexts/UserContext'
 import { post } from '../api'
+import { useNavigate } from 'react-router-dom';
 //this is connected to using the toLocaleString method
 dayjs.extend(window.dayjs_plugin_customParseFormat);
 
-const PopupForm = ({ setOpen, open, service, setApptStatus }) => {
+const PopupForm = ({ setOpen, open, service }) => {
   const { user } = useUser()
+  const navigate = useNavigate()
   const handleClose = () => {
     setOpen(false);
   };
@@ -57,7 +59,7 @@ const PopupForm = ({ setOpen, open, service, setApptStatus }) => {
       const postedAppt = await post('/api/bookings', appointment)
       if (postedAppt) {
         handleClose()
-        setApptStatus(true)
+        navigate('/user')
       }
     }
   })

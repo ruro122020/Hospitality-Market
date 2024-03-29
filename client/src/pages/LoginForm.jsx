@@ -6,11 +6,12 @@ import { useAuth } from '../components/contexts/AuthContext'
 import { apiLogin } from '../api'
 import { NavLink } from 'react-router-dom'
 import { Grid, TextField, FormControl, Button } from '@mui/material'
+import { useUser } from '../components/contexts/UserContext'
 
 const LoginForm = () => {
-
   const [error, setError] = useState(false)
   const { login } = useAuth()
+  const { setUser } = useUser()
   let navigate = useNavigate()
 
   const formSchema = yup.object().shape({
@@ -24,9 +25,10 @@ const LoginForm = () => {
     },
     validationSchema: formSchema,
     onSubmit: async (values) => {
-      const success = await apiLogin(values)
-      if (success) {
+      const userObj = await apiLogin(values)
+      if (userObj) {
         login()
+        setUser(userObj)
         navigate('/services')
       }
     }

@@ -5,12 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../components/contexts/AuthContext';
 import { NavLink } from 'react-router-dom';
 import { Button, Grid, TextField } from '@mui/material'
+import { useUser } from '../components/contexts/UserContext';
 
 const SignupForm = () => {
   const [error, setError] = useState(false)
+  const { setUser } = useUser()
+
   let navigate = useNavigate()
   const { login } = useAuth()
-
   const formSchema = yup.object().shape({
     name: yup.string().required("Must enter a name").min(3),
     username: yup.string().required('Must enter username'),
@@ -42,6 +44,7 @@ const SignupForm = () => {
             setError(true)
           } else {
             login()
+            setUser(user)
             navigate('/services')
           }
           console.log('user', user)

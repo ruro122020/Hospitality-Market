@@ -15,7 +15,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { NavLink } from 'react-router-dom'
 import { useAuth } from './contexts/AuthContext'
 import { apiLogout } from '../api'
-
+import { useUser } from './contexts/UserContext';
 const pages = [
   {
     route: '/',
@@ -58,7 +58,7 @@ const Navbar = () => {
   const { isLoggedIn, logout } = useAuth()
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  const { setUser } = useUser()
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -78,6 +78,7 @@ const Navbar = () => {
     const success = await apiLogout()
     if (success) {
       logout()
+      setUser(null)
     }
   }
   return (

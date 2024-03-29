@@ -14,7 +14,6 @@ import { useAuth } from './contexts/AuthContext'
 const ServiceCard = ({ service }) => {
   const { title, description, location, price, user, category } = service
   const [open, setOpen] = React.useState(false)
-  const [apptStatus, setApptStatus] = useState(false)
   const { isLoggedIn } = useAuth()
   const navigate = useNavigate()
 
@@ -67,14 +66,12 @@ const ServiceCard = ({ service }) => {
               ${price}
             </Typography>
           </div>
-          {apptStatus ?
-            <Button disabled variant="outlined"> Requested</Button>
-            :
-            <Button variant="outlined" onClick={handleClickOpen}>
-              Book Appointment
-            </Button>
-          }
-          <PopupForm setOpen={setOpen} open={open} service={service} setApptStatus={setApptStatus} />
+
+          <Button variant="outlined" onClick={handleClickOpen}>
+            Book Appointment
+          </Button>
+
+          <PopupForm setOpen={setOpen} open={open} service={service} />
         </CardContent>
       </Card>
     </Grid >

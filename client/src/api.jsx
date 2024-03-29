@@ -24,7 +24,8 @@ const apiLogin = async (values) => {
     if (!res.ok) {
       throw new Error('login request failed')
     }
-    return true
+    const data = await res.json()
+    return data
   } catch (error) {
     console.error('Error logging in: ', error)
     return false

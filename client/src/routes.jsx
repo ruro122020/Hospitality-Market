@@ -4,7 +4,7 @@ import Layout from "./components/Layout";
 import Services from './pages/Services'
 import LoginForm from "./pages/LoginForm";
 import Dashboard from "./pages/dashboard/Dashboard";
-import Appointments from "./pages/dashboard/Appointments";
+import Appointments from "./pages/dashboard/userAppt/Appointments";
 import DService from './pages/dashboard/userServices/DServices'
 const routes = [
   {
