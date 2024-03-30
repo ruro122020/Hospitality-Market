@@ -5,6 +5,19 @@ from models.models import Booking
 from sqlalchemy.exc import IntegrityError
 
 class BookingById(Resource):
+  def patch(self, id):
+    booking = Booking.query.filter_by(id=id).first()
+    if booking:
+      json = request.get_json()
+      for attr in json:
+        setattr(booking, attr, json.get(attr))
+    try:
+      db.session.add(booking)
+      db.session.commit()
+      return booking.to_dict(), 200
+    except IntegrityError:
+      return {"error": "Booking could not be updated"}
+    
   def delete(self, id):
     booking = Booking.query.filter_by(id=id).first()
     if booking:
