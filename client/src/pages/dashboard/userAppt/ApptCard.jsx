@@ -1,21 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions'
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
-import { deleteData } from '../../../api';
+import { deleteData, update } from '../../../api';
 
 const ApptCard = ({ appt, onDelete, isProvider }) => {
   const { date, time, status, service, id } = appt
-
+  const [onStatus, setOnStatus] = useState(false)
+  const [setStatus, setSetStatus] = useState(null)
   const deleteAppointment = async () => {
     const booking = await deleteData(`/api/bookings/${id}`)
     onDelete(appt)
   }
-  const handleAcceptClick = () => { }
-  const handleRejectClick = () => { }
+  const handleAcceptClick = async () => {
+    const accept = await update(`/api/bookings/${id}`, {
+      status: 'Accepted'
+    })
+    setOnStatus(true)
+    setSetStatus(accept.status)
+  }
+  const handleRejectClick = async () => {
+    const reject = await update(`/api/bookings/${id}`, {
+      status: 'Rejected'
+    })
+
+    setOnStatus(true)
+    setSetStatus(reject.status)
+    //Also need to code the removal of the card in appointments
+  }
 
   return (
     <Card>
@@ -42,7 +57,7 @@ const ApptCard = ({ appt, onDelete, isProvider }) => {
             {time}
           </Typography>
           <Typography>
-            {status}
+            {onStatus ? setStatus : status}
           </Typography>
         </Box>
       </CardContent>

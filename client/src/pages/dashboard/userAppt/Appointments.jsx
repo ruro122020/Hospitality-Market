@@ -29,9 +29,6 @@ const Appointments = () => {
       setProvider(newProviderList)
     }
   }
-  console.log('consumer', consumer)
-  console.log('provider', provider)
-
   return (
     <div>
       {!consumer.length && !provider.length && <h1>No Appointments</h1>}

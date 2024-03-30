@@ -96,14 +96,14 @@ const deleteData = async (url) => {
   }
 }
 
-const update = async (url, service) => {
+const update = async (url, body) => {
   try {
     const res = await fetch(url, {
       method: 'PATCH',
       headers: {
         "Content-Type": 'application/json'
       },
-      body: JSON.stringify(service)
+      body: JSON.stringify(body)
     })
     if (!res.ok) {
       throw new Error('update not successful')
