@@ -42,8 +42,9 @@ const ApptCard = ({ appt, onDelete, isProvider }) => {
           <Typography variant="body2" color="text.secondary">
             {service.description}
           </Typography>
+
         </Box>
-        <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-around' }} width={450}>
           <Typography>
             Rate: ${service.price}
           </Typography>
@@ -68,7 +69,7 @@ const ApptCard = ({ appt, onDelete, isProvider }) => {
             <Button onClick={handleAcceptClick} size="small">Accept</Button>
           </>
           :
-          <Button onClick={deleteAppointment} size="small">Cancel</Button>
+          <Button onClick={deleteAppointment} size="small">Delete</Button>
 
         }
       </CardActions>
