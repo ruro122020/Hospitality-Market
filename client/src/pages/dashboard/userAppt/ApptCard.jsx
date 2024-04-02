@@ -29,7 +29,6 @@ const ApptCard = ({ appt, onDelete, isProvider }) => {
 
     setOnStatus(true)
     setSetStatus(reject.status)
-    //Also need to code the removal of the card in appointments
   }
 
   return (
