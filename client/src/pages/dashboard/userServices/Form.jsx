@@ -12,7 +12,7 @@ const Form = ({ onSubmit, initialValues }) => {
   const formSchema = yup.object().shape({
     title: yup.string().required('Must have a title'),
     description: yup.string().required('Must have a description'),
-    price: yup.number().required('Must have a price'),
+    price: yup.number().typeError('This field can only take numbers').required('Must have a price').positive().integer(),
     location: yup.string().required('Must have a location'),
     category: yup.string().required('Must have a category')
   })
@@ -40,7 +40,7 @@ const Form = ({ onSubmit, initialValues }) => {
             label='Title'
             variant='standard' />
           {formik.touched.title && formik.errors.title && (
-            <div>{formik.errors.title}</div>
+            <div style={{ color: 'red', paddingTop: '7px' }}>{formik.errors.title}</div>
           )}
         </div>
         <div>
@@ -53,7 +53,7 @@ const Form = ({ onSubmit, initialValues }) => {
             label='Description'
             variant='standard' />
           {formik.touched.description && formik.errors.description && (
-            <div>{formik.errors.description}</div>
+            <div style={{ color: 'red', paddingTop: '7px' }}>{formik.errors.description}</div>
           )}
         </div>
         <div>
@@ -67,7 +67,7 @@ const Form = ({ onSubmit, initialValues }) => {
             label='Price'
             variant='standard' />
           {formik.touched.price && formik.errors.price && (
-            <div>{formik.errors.price}</div>
+            <div style={{ color: 'red', paddingTop: '7px' }}>{formik.errors.price}</div>
           )}
         </div>
         <div>
@@ -81,7 +81,7 @@ const Form = ({ onSubmit, initialValues }) => {
             label='Location'
             variant='standard' />
           {formik.touched.location && formik.errors.location && (
-            <div>{formik.errors.location}</div>
+            <div style={{ color: 'red', paddingTop: '7px' }}>{formik.errors.location}</div>
           )}
         </div>
         <FormControl variant="standard" sx={{ minWidth: 120 }}>
@@ -99,7 +99,7 @@ const Form = ({ onSubmit, initialValues }) => {
             <MenuItem value='Pet'>Pet</MenuItem>
           </Select>
           {formik.touched.category && formik.errors.category && (
-            <div>{formik.errors.category}</div>
+            <div style={{ color: 'red', paddingTop: '7px' }}>{formik.errors.category}</div>
           )}
           <Button type='submit' >Submit</Button>
         </FormControl>

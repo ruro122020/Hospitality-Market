@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { getData } from '../api'
-import ServiceCard from '../components/ServiceCard'
+import { getData } from '../../api'
+import ServiceCard from './ServiceCard'
 import { Grid } from '@mui/material'
-import { useUser } from '../components/contexts/UserContext'
-import { useAuth } from '../components/contexts/AuthContext'
+import { useUser } from '../../components/contexts/UserContext'
+import { useAuth } from '../../components/contexts/AuthContext'
 const Services = () => {
   const [services, setServices] = useState(null)
   const { user } = useUser()

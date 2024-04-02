@@ -8,8 +8,8 @@ import BookmarkAdd from '@mui/icons-material/BookmarkAddOutlined';
 import { Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import PopupForm from './PopupForm';
-import { useAuth } from './contexts/AuthContext'
+import PopupForm from '../../components/PopupForm';
+import { useAuth } from '../../components/contexts/AuthContext'
 
 const ServiceCard = ({ service }) => {
   const { title, description, location, price, user, category } = service
