@@ -30,6 +30,8 @@ const LoginForm = () => {
         login()
         setUser(userObj)
         navigate('/services')
+      } else {
+        setError(true)
       }
     }
   })
@@ -38,7 +40,7 @@ const LoginForm = () => {
     <Grid container sx={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
       <h1>Login</h1>
       <form onSubmit={formik.handleSubmit}>
-        {error && <div>Invalid Username or Password</div>}
+        {error && <div style={{ color: 'red', paddingBottom: '4px' }}>Invalid Username or Password</div>}
         <div>
           <TextField
             id='username'
@@ -50,7 +52,7 @@ const LoginForm = () => {
             variant='standard'
           />
           {formik.touched.username && formik.errors.username && (
-            <div>{formik.errors.username}</div>
+            <div style={{ color: 'red', paddingTop: '7px' }}>{formik.errors.username}</div>
           )}
         </div>
         <div>
@@ -64,7 +66,7 @@ const LoginForm = () => {
             variant='standard'
           />
           {formik.touched.password && formik.errors.password && (
-            <div>{formik.errors.password}</div>
+            <div style={{ color: 'red', paddingTop: '7px' }}>{formik.errors.password}</div>
           )}
         </div>
         <div style={{ paddingTop: '12px' }}>

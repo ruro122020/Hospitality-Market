@@ -9,7 +9,7 @@ class Booking(db.Model, SerializerMixin):
                      '-consumer.provider_bookings',
                      '-consumer.consumer_bookings',
                      '-service.bookings',
-                     '-service.user')
+                     '-service.user',)
 
   id = db.Column(db.Integer, primary_key=True)
   date = db.Column(db.String, nullable=False)

@@ -14,8 +14,8 @@ const SignupForm = () => {
   let navigate = useNavigate()
   const { login } = useAuth()
   const formSchema = yup.object().shape({
-    name: yup.string().required("Must enter a name").min(3),
-    username: yup.string().required('Must enter username'),
+    name: yup.string().matches(/^[a-z ]+$/i, 'Only alphabetic characters allowed').required("Must enter a name").min(3),
+    username: yup.string().matches(/^[a-z ]+$/i, 'Only alphabetic characters allowed').required('Must enter username'),
     email: yup.string().email("Invalid email").required('Must enter email'),
     password: yup.string().min(8, 'Password must be at least 8 characters').required('Password is required')
   })
@@ -47,7 +47,6 @@ const SignupForm = () => {
             setUser(user)
             navigate('/services')
           }
-          console.log('user', user)
         })
         .catch(error => console.log('error', error))
     }
@@ -56,7 +55,7 @@ const SignupForm = () => {
     <Grid container sx={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
       <h1>Sign Up</h1>
       <form onSubmit={formik.handleSubmit}>
-        {error && <div>User Already Exist</div>}
+        {error && <div style={{ color: 'green', fontSize: '25px', paddingBottom: '5px' }}>User Already Exist</div>}
         <div>
           <TextField
             id='name'
@@ -68,7 +67,7 @@ const SignupForm = () => {
             variant="standard"
           />
           {formik.touched.name && formik.errors.name && (
-            <div>{formik.errors.name}</div>
+            <div style={{ color: 'red', paddingTop: '7px' }}>{formik.errors.name}</div>
           )}
         </div>
         <div>
@@ -82,7 +81,7 @@ const SignupForm = () => {
             variant="standard"
           />
           {formik.touched.username && formik.errors.username && (
-            <div>{formik.errors.username}</div>
+            <div style={{ color: 'red', paddingTop: '7px' }}>{formik.errors.username}</div>
           )}
         </div>
         <div>
@@ -96,7 +95,7 @@ const SignupForm = () => {
             variant="standard"
           />
           {formik.touched.email && formik.errors.email && (
-            <div>{formik.errors.email}</div>
+            <div style={{ color: 'red', paddingTop: '7px' }}>{formik.errors.email}</div>
           )}
         </div>
 
@@ -111,7 +110,7 @@ const SignupForm = () => {
             variant="standard"
           />
           {formik.touched.password && formik.errors.password && (
-            <div>{formik.errors.password}</div>
+            <div style={{ color: 'red', paddingTop: '7px' }}>{formik.errors.password}</div>
           )}
         </div>
         <div style={{ paddingTop: '12px' }}>

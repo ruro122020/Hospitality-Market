@@ -24,7 +24,7 @@ const ApptCard = ({ appt, onDelete, isProvider }) => {
   }
   const handleRejectClick = async () => {
     const reject = await update(`/api/bookings/${id}`, {
-      status: 'Rejected'
+      status: 'Declined'
     })
 
     setOnStatus(true)
@@ -64,7 +64,7 @@ const ApptCard = ({ appt, onDelete, isProvider }) => {
       <CardActions>
         {isProvider ?
           <>
-            <Button onClick={handleRejectClick} size="small">Reject</Button>
+            <Button onClick={handleRejectClick} size="small">Decline</Button>
             <Button onClick={handleAcceptClick} size="small">Accept</Button>
           </>
           :

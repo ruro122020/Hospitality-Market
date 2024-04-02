@@ -9,7 +9,7 @@ class Service(db.Model, SerializerMixin):
   serialize_rules=('-user.services', 
                    '-bookings.service', 
                    '-bookings.consumer', 
-                   '-bookings.provider')
+                   '-bookings.provider',)
 
   id = db.Column(db.Integer, primary_key=True)
   title = db.Column(db.String, nullable=False)

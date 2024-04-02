@@ -13,14 +13,15 @@ class ServiceByID(Resource):
     if service:
       json = request.get_json()
       for attr in json:
-        setattr(service, attr, json.get(attr))
+        if attr != 'bookings':
+          setattr(service, attr, json.get(attr))
 
     try:
       db.session.add(service)
       db.session.commit()
       return service.to_dict(), 200
     except IntegrityError:
-      return {"error": "Service could not be updated"}
+      return {"error": "Service could not be updated"}, 422
     
 
   def delete(self, id):

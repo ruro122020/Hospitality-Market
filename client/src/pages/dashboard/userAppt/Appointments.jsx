@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '../../../components/contexts/AuthContext'
-import { useUser } from '../../../components/contexts/UserContext'
 import ApptCard from './ApptCard'
 import { apiCheckSession } from '../../../api'
 

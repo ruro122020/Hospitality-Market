@@ -16,7 +16,7 @@ class User(db.Model, SerializerMixin):
                      '-provider_bookings.provider',
                      '-provider_bookings.consumer',
                      '-consumer_bookings.provider',
-                     '-consumer_bookings.consumer')
+                     '-consumer_bookings.consumer',)
 
   __table_args__ = (db.CheckConstraint('length(name) > 3', name='ck_user_name_length'),)
 
