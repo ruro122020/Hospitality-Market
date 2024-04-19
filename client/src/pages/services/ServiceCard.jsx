@@ -26,7 +26,12 @@ const ServiceCard = ({ service }) => {
   };
 
   return (
-    <Grid sx={{ display: 'flex', paddingBottom: '30px' }} >
+    <Grid sx={{
+      display: 'flex',
+      paddingBottom: '30px',
+      paddingRight: '30px',
+      textAlign: 'center'
+    }} >
       <Card sx={{ width: 320 }}>
         <div>
           <Typography level="title-lg">{user.name}</Typography>
@@ -49,27 +54,30 @@ const ServiceCard = ({ service }) => {
             alt=""
           />
         </AspectRatio>
-        <Typography level="title-lg">{title}</Typography>
-        <div>
-          <Typography level="body-sm" sx={{}}>{description}</Typography>
-        </div>
         <CardContent orientation="horizontal"
           sx={{
             display: 'flex',
-            flexDirection: 'row',
+            flexDirection: 'column',
             justifyContent: 'space-between',
             alignItems: 'center'
           }}>
-          <div style={{ marginTop: 'auto' }}>
-            <Typography level="body-xs">Rate:</Typography>
-            <Typography fontSize="lg" fontWeight="lg">
-              ${price}
-            </Typography>
+          <Typography level="title-lg">{title}</Typography>
+          <div>
+            <Typography level="body-sm" >{description}</Typography>
           </div>
-
-          <Button variant="outlined" onClick={handleClickOpen}>
-            Book Appointment
-          </Button>
+          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', paddingTop: '12px' }}>
+            <div>
+              <Typography level="body-xs">Rate:</Typography>
+              <Typography fontSize="lg" fontWeight="lg">
+                ${price}
+              </Typography>
+            </div>
+            <div>
+              <Button variant="outlined" onClick={handleClickOpen}>
+                Book Appointment
+              </Button>
+            </div>
+          </div>
 
           <PopupForm setOpen={setOpen} open={open} service={service} />
         </CardContent>

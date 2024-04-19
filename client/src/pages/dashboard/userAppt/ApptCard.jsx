@@ -26,11 +26,9 @@ const ApptCard = ({ appt, onDelete, isProvider }) => {
     const reject = await update(`/api/bookings/${id}`, {
       status: 'Declined'
     })
-
     setOnStatus(true)
     setSetStatus(reject.status)
   }
-
   return (
     <Card>
       <CardContent>

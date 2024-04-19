@@ -13,14 +13,14 @@ import dayjs from 'dayjs';
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import Alert from '@mui/material/Alert';
-import { useUser } from './contexts/UserContext'
+import { useAuth } from './contexts/AuthContext'
 import { post } from '../api'
 import { useNavigate } from 'react-router-dom';
 //this is connected to using the toLocaleString method
 dayjs.extend(window.dayjs_plugin_customParseFormat);
 
 const PopupForm = ({ setOpen, open, service }) => {
-  const { user } = useUser()
+  const { user, updateUser } = useAuth()
   const navigate = useNavigate()
   const handleClose = () => {
     setOpen(false);
@@ -58,6 +58,7 @@ const PopupForm = ({ setOpen, open, service }) => {
       const postedAppt = await post('/api/bookings', appointment)
       if (postedAppt) {
         handleClose()
+        updateUser({ ...user, consumer_bookings: [...user.consumer_bookings, postedAppt] })
         navigate('/user')
       }
     }

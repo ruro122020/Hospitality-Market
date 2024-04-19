@@ -19,13 +19,12 @@ const Home = () => {
       zIndex: 10
     }}>
       <div style={{ paddingTop: '60px', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
-        <h1 >Marketplace Services</h1>
+        <h1>Service Market</h1>
         <p>Here we pride ourselves with providing the best services from the best service providers</p>
         <p>Let's get started!</p>
         <Button to={isLoggedIn ? '/services' : '/signup'}>Get Started</Button>
       </div>
     </div>
-
   )
 }
 

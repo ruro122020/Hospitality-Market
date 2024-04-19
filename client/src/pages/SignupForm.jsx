@@ -2,17 +2,14 @@ import React, { useState } from 'react'
 import { useFormik } from 'formik';
 import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../components/contexts/AuthContext';
 import { NavLink } from 'react-router-dom';
 import { Button, Grid, TextField } from '@mui/material'
-import { useUser } from '../components/contexts/UserContext';
+import { useAuth } from '../components/contexts/AuthContext';
 
 const SignupForm = () => {
   const [error, setError] = useState(false)
-  const { setUser } = useUser()
-
+  const { login, updateUser } = useAuth()
   let navigate = useNavigate()
-  const { login } = useAuth()
   const formSchema = yup.object().shape({
     name: yup.string().matches(/^[a-z ]+$/i, 'Only alphabetic characters allowed').required("Must enter a name").min(3),
     username: yup.string().matches(/^[a-z ]+$/i, 'Only alphabetic characters allowed').required('Must enter username'),
@@ -44,7 +41,7 @@ const SignupForm = () => {
             setError(true)
           } else {
             login()
-            setUser(user)
+            updateUser(user)
             navigate('/services')
           }
         })
