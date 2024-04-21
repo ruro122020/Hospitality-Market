@@ -6,7 +6,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const pages = [{
   route: '/user',
@@ -17,9 +17,10 @@ const pages = [{
   page: 'Services'
 }
 ]
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const DashboardNav = () => {
+  const location = useLocation()
   return (
     <>
       <Drawer
@@ -33,10 +34,10 @@ const DashboardNav = () => {
       >
         <Toolbar />
         <Box sx={{ overflow: 'auto' }} >
-          <List>
+          <List sx={{ paddingTop: '12px' }}>
             {pages.map(({ route, page }) => (
-              <ListItem key={page} disablePadding>
-                <ListItemButton as={NavLink} to={route}>
+              <ListItem key={page} >
+                <ListItemButton selected={location.pathname === route} as={NavLink} to={route}>
                   <ListItemText primary={page} />
                 </ListItemButton>
               </ListItem>
