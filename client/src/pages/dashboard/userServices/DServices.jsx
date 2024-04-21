@@ -11,19 +11,19 @@ const DServices = () => {
   const [editService, setEditService] = useState(null)
   const [isEdit, setIsEdit] = useState(false)
   const { user, isLoggedIn, updateUser } = useAuth()
+
   console.log('user', user)
+
   const handleAddService = async (serviceObj) => {
     if (serviceObj) {
       const newService = await post('/api/services', serviceObj)
       setShowForm(false)
-      // setServices(prevState => [...prevState, newService])
-      updateUser({ ...user, services: [...user.services, serviceObj] })
+      updateUser({ ...user, services: [...user.services, newService] })
     }
   }
   const handleDelete = (id) => {
-    setServices((prevState) => {
-      return prevState.filter(service => service.id !== id)
-    })
+    const newServiceObj = user.services.filter(service => service.id !== id)
+    updateUser({ ...user, services: newServiceObj })
   }
 
   const handleEdit = async (serviceObj) => {
