@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Form from './Form'
 import { Button, Grid } from '@mui/material'
 import ServiceCard from './ServiceCard'
@@ -7,12 +7,9 @@ import { useAuth } from '../../../components/contexts/AuthContext'
 
 const DServices = () => {
   const [showForm, setShowForm] = useState(false)
-  const [services, setServices] = useState(null)
   const [editService, setEditService] = useState(null)
   const [isEdit, setIsEdit] = useState(false)
   const { user, isLoggedIn, updateUser } = useAuth()
-
-  console.log('user', user)
 
   const handleAddService = async (serviceObj) => {
     if (serviceObj) {
@@ -28,14 +25,14 @@ const DServices = () => {
 
   const handleEdit = async (serviceObj) => {
     const newService = await update(`/api/services/${serviceObj.id}`, serviceObj)
-    const newServiceList = services.map(service => {
+    const newServiceList = user.services.map(service => {
       if (service.id === newService.id) {
         return newService
       } else {
         return service
       }
     })
-    setServices(newServiceList)
+    updateUser({ ...user, services: newServiceList })
     setEditService({})
     setShowForm(false)
     setIsEdit(false)
@@ -53,6 +50,7 @@ const DServices = () => {
   }
 
   if (!isLoggedIn) return <div>Loading Services ...</div>
+
   return (
     <div>
       <h1>Services</h1>
