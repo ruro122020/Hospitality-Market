@@ -8,7 +8,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import * as yup from 'yup'
 
-const Form = ({ onSubmit, initialValues }) => {
+const Form = ({ onSubmit, initialValues, onCancel }) => {
   const formSchema = yup.object().shape({
     title: yup.string().required('Must have a title'),
     description: yup.string().required('Must have a description'),
@@ -57,7 +57,6 @@ const Form = ({ onSubmit, initialValues }) => {
           )}
         </div>
         <div>
-
           <TextField
             id='price'
             name='price'
@@ -71,7 +70,6 @@ const Form = ({ onSubmit, initialValues }) => {
           )}
         </div>
         <div>
-
           <TextField
             id='location'
             name='location'
@@ -101,7 +99,10 @@ const Form = ({ onSubmit, initialValues }) => {
           {formik.touched.category && formik.errors.category && (
             <div style={{ color: 'red', paddingTop: '7px' }}>{formik.errors.category}</div>
           )}
-          <Button type='submit' >Submit</Button>
+          <div style={{ display: 'flex' }}>
+            <Button onClick={() => onCancel()}>Cancel</Button>
+            <Button type='submit' >Submit</Button>
+          </div>
         </FormControl>
       </form>
     </Grid >

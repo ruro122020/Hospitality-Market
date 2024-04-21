@@ -48,20 +48,20 @@ const ServiceCard = ({ service, onDelete, onEdit }) => {
           </div>
           <div>
             <Button
-              variant="solid"
+              variant="standard"
               size="md"
               color="primary"
               onClick={() => onEdit(service)}
-              sx={{ mt: 'auto', alignSelf: 'center', fontWeight: 600, backgroundColor: 'Orange' }}
+              sx={{ mt: 'auto', alignSelf: 'center', fontWeight: 600, color: 'orange' }}
             >
               Edit
             </Button>
             <Button
-              variant="solid"
+              variant="standard"
               size="md"
               color="primary"
               onClick={deleteService}
-              sx={{ mt: 'auto', alignSelf: 'center', fontWeight: 600, backgroundColor: 'red' }}
+              sx={{ mt: 'auto', alignSelf: 'center', fontWeight: 600, color: 'red' }}
             >
               Delete
             </Button>

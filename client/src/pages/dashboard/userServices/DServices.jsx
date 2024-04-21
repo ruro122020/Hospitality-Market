@@ -1,30 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import Form from './Form'
-import { apiCheckSession } from '../../../api'
 import { Button, Grid } from '@mui/material'
 import ServiceCard from './ServiceCard'
 import { post, update } from '../../../api'
+import { useAuth } from '../../../components/contexts/AuthContext'
 
 const DServices = () => {
   const [showForm, setShowForm] = useState(false)
   const [services, setServices] = useState(null)
   const [editService, setEditService] = useState(null)
   const [isEdit, setIsEdit] = useState(false)
-
-  useEffect(() => {
-    const checkIfLoggedIn = async () => {
-      const user = await apiCheckSession()
-      if (user) {
-        setServices(user.services)
-      }
-    }
-    checkIfLoggedIn()
-  }, [])
+  const { user, isLoggedIn, updateUser } = useAuth()
+  console.log('user', user)
   const handleAddService = async (serviceObj) => {
     if (serviceObj) {
       const newService = await post('/api/services', serviceObj)
       setShowForm(false)
-      setServices(prevState => [...prevState, newService])
+      // setServices(prevState => [...prevState, newService])
+      updateUser({ ...user, services: [...user.services, serviceObj] })
     }
   }
   const handleDelete = (id) => {
@@ -54,13 +47,18 @@ const DServices = () => {
     setShowForm(true)
   }
 
-  if (!services) return <div>Loading Services ...</div>
+  const handleCancel = () => {
+    setIsEdit(false)
+    setShowForm(false)
+  }
+
+  if (!isLoggedIn) return <div>Loading Services ...</div>
   return (
     <div>
       <h1>Services</h1>
       <Button onClick={() => setShowForm(!showForm)}> {showForm ? '-' : '+'} Service</Button>
       {isEdit ?
-        showForm && <Form onSubmit={handleEdit} initialValues={editService} />
+        showForm && <Form onSubmit={handleEdit} initialValues={editService} onCancel={handleCancel} />
         :
         showForm && <Form onSubmit={handleAddService} initialValues={{
           title: '',
@@ -69,11 +67,11 @@ const DServices = () => {
           location: '',
           category: ''
         }}
+          onCancel={handleCancel}
         />}
 
-
       <Grid container sx={{ display: 'flex', justifyContent: 'space-evenly', paddingTop: '15px' }}>
-        {services.map(service => <ServiceCard
+        {user.services.map(service => <ServiceCard
           key={service.id}
           service={service}
           onDelete={handleDelete}
