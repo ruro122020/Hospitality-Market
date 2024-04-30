@@ -1,6 +1,6 @@
 Service Market
 
-This is a full stack web application has a couple of features: 
+This is a full stack web application with a couple of features: 
 
 1. You can create an account
 2. You can provide cleaning, landscaping, or pet services
