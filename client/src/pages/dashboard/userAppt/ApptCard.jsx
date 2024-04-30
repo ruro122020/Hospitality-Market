@@ -11,6 +11,7 @@ const ApptCard = ({ appt, onDelete, isProvider }) => {
   const { date, time, status, service, id } = appt
   const [onStatus, setOnStatus] = useState(false)
   const [setStatus, setSetStatus] = useState(null)
+
   const deleteAppointment = async () => {
     const booking = await deleteData(`/api/bookings/${id}`)
     onDelete(appt)
@@ -29,6 +30,7 @@ const ApptCard = ({ appt, onDelete, isProvider }) => {
     setOnStatus(true)
     setSetStatus(reject.status)
   }
+  console.log('appt', appt)
   return (
     <Card>
       <CardContent>

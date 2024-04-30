@@ -20,7 +20,9 @@ const DServices = () => {
   }
   const handleDelete = (id) => {
     const newServiceObj = user.services.filter(service => service.id !== id)
-    updateUser({ ...user, services: newServiceObj })
+    const providerBookings = user.provider_bookings.filter(booking => booking.service_id !== id)
+
+    updateUser({ ...user, services: newServiceObj, provider_bookings: providerBookings })
   }
 
   const handleEdit = async (serviceObj) => {

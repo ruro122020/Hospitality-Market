@@ -20,10 +20,10 @@ const Appointments = () => {
       const newConsumerList = user.consumer_bookings.filter(appt => appt.id !== apptObj.id)
       updateUser({ ...user, consumer_bookings: newConsumerList })
     }
-    // if (type === 'provider') {
-    //   const newProviderList = provider.filter(appt => appt.id !== apptObj.id)
-    //   setProvider(newProviderList)
-    // }
+    if (type === 'provider') {
+      const newProviderList = user.provider.filter(appt => appt.id !== apptObj.id)
+      setProvider(newProviderList)
+    }
   }
   console.log('user', user)
   return (
@@ -39,7 +39,7 @@ const Appointments = () => {
           {user.consumer_bookings.map(appt => <ApptCard key={appt.id} appt={appt} onDelete={() => handleDelete(appt, 'consumer')} isProvider={false} />)}
         </TabPanel>
         <TabPanel value="2">
-          {/* {user.provider_bookings.map(appt => <ApptCard key={appt.id} appt={appt} onDelete={() => handleDelete(appt, 'provider')} isProvider={true} />)} */}
+          {user.provider_bookings.map(appt => <ApptCard key={appt.id} appt={appt} onDelete={() => handleDelete(appt, 'provider')} isProvider={true} />)}
 
         </TabPanel>
       </TabContext>
