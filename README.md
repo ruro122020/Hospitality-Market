@@ -1,12 +1,12 @@
 Service Market
 
+If you're a homeowner, discovering a service app that offers cleaning, landscaping, and pet care at an affordable rate is a game-changer. This application provides a way for users to request a booking for a time and date on when they'd like a service to get done. The provider then has the choice to accept or decline that booking request. 
+
 This is a full stack web application with a couple of features: 
 
 1. You can create an account
 2. You can provide cleaning, landscaping, or pet services
 3. You can be a consumer and book an appointemnt to do any cleaning, landscaping, or pet services
-
-The Technologies I used:
 
 Frontend
 - React, Material UI, React-Router-Dom, Yup, Formik

@@ -44,8 +44,6 @@ const apiCheckSession = async () => {
     console.log('error in checksession route', error)
     return false
   }
-
-
 }
 
 const post = async (url, body) => {
