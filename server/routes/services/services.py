@@ -1,44 +1,9 @@
 from flask import request, session
 from flask_restful import Resource
-from config import app, db, api, ma
-from models.models import Service, User
+from config import db, api
+from models.models import Service
 from sqlalchemy.exc import IntegrityError
-from flask_marshmallow.fields import fields
-
-class UserSchema(ma.Schema):
-  class Meta:
-    model = User
-    load_instance = True
-
-  id = ma.Integer()
-  name = ma.String()
-  username = ma.String()
-  email = ma.String()
-  image_url = ma.String()
-  
-
-class ServiceSchema(ma.Schema):
-  class Meta:
-    model = Service
-    load_instance = True
-  
-  title = ma.String()
-  description = ma.String()
-  price = ma.String()
-  location = ma.String()
-  category = ma.String()
-  user = fields.Nested(UserSchema)
-  id = ma.Number()
-
-
-  url = ma.Hyperlinks(
-    {
-        "collection": ma.URLFor("services")
-    }
-)
-  
-service_schema = ServiceSchema()
-services_schema = ServiceSchema(many=True)
+from schemas.service import service_schema, services_schema
 
 class Services(Resource):
   
