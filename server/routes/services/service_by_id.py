@@ -33,5 +33,4 @@ class ServiceByID(Resource):
     except IntegrityError:
       return {'error': 'Service could not be deleted'}, 404
 
-
 api.add_resource(ServiceByID, '/services/<int:id>', endpoint='service_id')

@@ -20,7 +20,7 @@ class Booking(db.Model, SerializerMixin):
   service_id = db.Column(db.Integer, db.ForeignKey('services.id'))
   
   #relationships
-  provider = db.relationship('User', foreign_keys=[provider_id] ,back_populates='provider_bookings')
+  provider = db.relationship('User', foreign_keys=[provider_id], back_populates='provider_bookings')
   consumer = db.relationship('User', foreign_keys=[consumer_id], back_populates='consumer_bookings')
 
   service = db.relationship('Service', back_populates='bookings')
