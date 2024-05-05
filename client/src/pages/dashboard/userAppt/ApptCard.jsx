@@ -30,7 +30,6 @@ const ApptCard = ({ appt, onDelete, isProvider }) => {
     setOnStatus(true)
     setSetStatus(reject.status)
   }
-  console.log('appt', appt)
   return (
     <Card>
       <CardContent>

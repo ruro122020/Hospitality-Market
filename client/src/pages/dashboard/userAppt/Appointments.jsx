@@ -20,12 +20,12 @@ const Appointments = () => {
       const newConsumerList = user.consumer_bookings.filter(appt => appt.id !== apptObj.id)
       updateUser({ ...user, consumer_bookings: newConsumerList })
     }
+    // FIX THIS!: user.provider is not right 
     if (type === 'provider') {
       const newProviderList = user.provider.filter(appt => appt.id !== apptObj.id)
       setProvider(newProviderList)
     }
   }
-  console.log('user', user)
   return (
     <Box sx={{ width: '100%', typography: 'body1' }}>
       <TabContext value={value}>
