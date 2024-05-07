@@ -26,6 +26,7 @@ const DServices = () => {
   }
 
   const handleEdit = async (serviceObj) => {
+    console.log('serviceObj', serviceObj)
     const newService = await update(`/api/services/${serviceObj.id}`, serviceObj)
     const newServiceList = user.services.map(service => {
       if (service.id === newService.id) {

@@ -4,22 +4,24 @@ from config import app, db, api, ma
 from models.models import Service, User
 from sqlalchemy.exc import IntegrityError
 from flask_marshmallow.fields import fields
-
+from schemas.service import service_schema
 
 class ServiceByID(Resource):
   
   def patch(self, id):
     service = Service.query.filter_by(id=id).first()
-    if service:
-      json = request.get_json()
-      for attr in json:
-        if attr != 'bookings':
-          setattr(service, attr, json.get(attr))
-
+    json = request.get_json()
+    print('json', json)
+    # if service:
+    #   for attr in json:
+    #     if attr != 'bookings':
+    #       setattr(service, attr, json.get(attr))
     try:
+      for attr in json:
+        setattr(service, attr, json[attr])
       db.session.add(service)
       db.session.commit()
-      return service.to_dict(), 200
+      return service_schema.dump(service), 200
     except IntegrityError:
       return {"error": "Service could not be updated"}, 422
     
@@ -34,3 +36,17 @@ class ServiceByID(Resource):
       return {'error': 'Service could not be deleted'}, 404
 
 api.add_resource(ServiceByID, '/services/<int:id>', endpoint='service_id')
+
+
+
+
+{
+ 'title': 'clean',
+ 'description': 'clean ', 
+ 'price': '45.00', 
+ 'location': 'new heights', 
+ 'category': 'House Cleaning', 
+ 'bookings': [], 
+ 'user_id': 16, 
+ 'id': 16,
+ }
