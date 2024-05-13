@@ -99,7 +99,7 @@ const Navbar = () => {
               textDecoration: 'none',
             }}
           >
-            Services
+            CleanScape
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>

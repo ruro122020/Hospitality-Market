@@ -94,7 +94,6 @@ const Form = ({ onSubmit, initialValues, onCancel }) => {
           >
             <MenuItem value='House Cleaning'>Cleaning</MenuItem>
             <MenuItem value='Landscaping'>Landscaping </MenuItem>
-            <MenuItem value='Pet'>Pet</MenuItem>
           </Select>
           {formik.touched.category && formik.errors.category && (
             <div style={{ color: 'red', paddingTop: '7px' }}>{formik.errors.category}</div>

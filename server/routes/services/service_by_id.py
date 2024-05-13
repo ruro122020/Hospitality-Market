@@ -11,17 +11,15 @@ class ServiceByID(Resource):
   def patch(self, id):
     service = Service.query.filter_by(id=id).first()
     json = request.get_json()
-    print('json', json)
-    # if service:
-    #   for attr in json:
-    #     if attr != 'bookings':
-    #       setattr(service, attr, json.get(attr))
+    # updated = service_schema.load(json, partial=True)
+    if service:
+      for attr, value in json.items():
+        if attr != 'bookings':
+          setattr(service, attr, value)
     try:
-      for attr in json:
-        setattr(service, attr, json[attr])
       db.session.add(service)
       db.session.commit()
-      return service_schema.dump(service), 200
+      return service.to_dict(), 200
     except IntegrityError:
       return {"error": "Service could not be updated"}, 422
     
