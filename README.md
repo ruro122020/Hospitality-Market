@@ -5,8 +5,8 @@ If you're a homeowner, discovering a service app that offers cleaning, landscapi
 This is a full stack web application with a couple of features: 
 
 1. You can create an account
-2. You can provide cleaning, landscaping, or pet services
-3. You can be a consumer and book an appointemnt for any cleaning, landscaping, or pet services to get done
+2. You can provide cleaning or landscaping
+3. You can be a consumer and book an appointemnt for any cleaning or landscaping to get done
 
 Frontend
 - React, Material UI, React-Router-Dom, Yup, Formik
