@@ -1,4 +1,4 @@
-# Service Market
+# Hospitality Market
 
 If you're a homeowner, discovering a service app that offers cleaning, landscaping, and pet care at an affordable rate is a game-changer. This application provides a way for users to request a booking for a time and date on when they'd like a service to get done. The provider then has the choice to accept or decline that booking request. 
 
