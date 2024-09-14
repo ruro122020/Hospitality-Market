@@ -1,12 +1,18 @@
 # Hospitality
 
-If you're a homeowner, discovering a service app that offers hospitality services at an affordable rate is a game-changer. This application provides a way for users to request a booking for a time and date on when they'd like a service to get done. The provider then has the choice to accept or decline that booking request. 
+Hospitality connects service providers with users, streamlining the process of finding personalized hospitality services. 
 
-This is a full stack web application with a couple of features: 
+Key Features:
 
-1. You can create an account
-2. You can provide hospitality services
-3. You can be a consumer and book an appointemnt for any service you need
+Dual Functionality: The website caters to both service providers and consumers, creating a dynamic marketplace for cleaning and landscaping services.
+
+Easy Account Creation: Users can quickly create an account, enabling them to either offer their services or book the services they need.
+
+Service Selection: Consumers can easily browse through available services, select the one they require, and proceed to book an appointment with just a few clicks away.
+
+Appointment Booking: The platform simplifies the booking process, ensuring a hassle-free experience for users seeking timely and efficient services.
+
+Service Market streamlines the process of finding and providing cleaning and landscaping services, making it an essential tool for both service providers and consumers looking for quality and convenience.
 
 Frontend
 - React, Material UI, React-Router-Dom, Yup, Formik
